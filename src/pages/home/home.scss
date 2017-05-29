@@ -1,0 +1,17 @@
+page-home {
+	#search{
+		border-radius: 15px;
+		border: 1px solid black	;
+	}
+	#search:after{
+	border: 0px solid transparent;
+	}
+	.confirm{
+		font-size:14px;
+		color:green;
+	}
+	.fake{
+		font-size:14px;
+		color:red;
+	}
+}

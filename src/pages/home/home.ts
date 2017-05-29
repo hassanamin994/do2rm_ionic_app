@@ -1,0 +1,54 @@
+import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
+
+/**
+ * Generated class for the Home page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+@Component({
+  selector: 'page-home',
+  templateUrl: 'home.html',
+})
+export class HomePage {
+  products: Array<any> = [] 
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad Home');
+    this.products = [
+    {	
+    	id:1,
+    	name:" Product 1 ",
+    	imageUrl:"https://dummyimage.com/600x400/000/fff",
+    	confirms: 15,
+    	fakes: 5
+    },{	
+    	id:2,
+    	name:" Product 2 ",
+    	imageUrl:"https://dummyimage.com/600x400/000/fff",
+    	confirms: 5,
+    	fakes: 9
+    },{	
+    	id:3,
+    	name:" Product 3 ",
+    	imageUrl:"https://dummyimage.com/600x400/000/fff",
+    	confirms: 10,
+    	fakes: 3
+    },
+
+    ]
+  }
+
+  doConfirm(id: number){
+  	console.log(id);
+  	
+  }
+  doFake(id: number){
+  	console.log(id);
+  	
+  }
+
+}
