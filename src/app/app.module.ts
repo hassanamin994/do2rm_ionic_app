@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ProductPage } from '../pages/product/product';
+import { ProductCard } from '../pages/product-card/product-card';
 import { ProductComments } from '../pages/product-comments/product-comments';
 import { ProductDetails } from '../pages/product-details/product-details';
 import { ProductPrices } from '../pages/product-prices/product-prices';
@@ -19,6 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     ProductPage,
+    ProductCard,
     ProductComments,
     ProductDetails,
     ProductPrices
@@ -33,6 +35,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     ProductPage,
+    ProductCard,
     ProductComments,
     ProductDetails,
     ProductPrices

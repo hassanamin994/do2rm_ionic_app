@@ -42,13 +42,5 @@ export class HomePage {
     ]
   }
 
-  doConfirm(id: number){
-  	console.log(id);
-  	
-  }
-  doFake(id: number){
-  	console.log(id);
-  	
-  }
 
 }

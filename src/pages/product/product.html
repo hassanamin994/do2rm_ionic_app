@@ -29,9 +29,13 @@
   	</ion-toolbar>
 </ion-header>
 <ion-content padding>
+ 
  <page-product-details *ngIf="icons=='overview'"></page-product-details>
+ 
  <page-product-prices *ngIf="icons=='prices'"></page-product-prices>
+ 
  <page-product-comments *ngIf="icons=='comments'"></page-product-comments>
+
 <button ion-button (click)="logSegment()"></button>
 product page
 </ion-content>

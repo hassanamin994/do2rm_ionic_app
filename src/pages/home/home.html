@@ -33,34 +33,10 @@
 
 	<ion-row>
 
-		<ion-card *ngFor="let product of products">
-		   <ion-row>
-				<ion-row>
-					
-					<ion-item >
-				   		<img src="{{product.imageUrl}}" />
-				  	</ion-item>	
-				   <ion-item text-center >
-				   		<h3>{{product.name}}</h3>
-				   		<div class="confirm">{{product.confirms}}: confirm</div>
-				   		<div class="fake">{{product.fakes}}: fake</div>
-				   </ion-item>
+		<ion-row *ngFor="let product of products">
+			<page-product-card [product]="product" ></page-product-card>
+		</ion-row>	
 
-				</ion-row>	
-
-			   	<ion-row>
-
-				   	<ion-item col-6 > 
-				   		<button ion-button color="secondary" (click)="doConfirm(product.id)" block>Confirm</button>
-				   	</ion-item>
-				   	<ion-item col-6 >
-					   		<button ion-button color="danger" (click)="doFake(product.id)" block>Fake</button>
-				   	</ion-item>
-				   
-			   	</ion-row>
-
-		   </ion-row>
-		</ion-card>
 	</ion-row>
 
 
