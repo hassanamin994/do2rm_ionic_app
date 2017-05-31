@@ -5,6 +5,7 @@
   Ionic pages and navigation.
 -->
 
-<ion-content padding>
-product detailswww
+<ion-content >
+	<page-product-card [product]="product"></page-product-card>
+	<button ion-button block style="background-color: orange;" (click)="addPrice()">Add Price</button>
 </ion-content>

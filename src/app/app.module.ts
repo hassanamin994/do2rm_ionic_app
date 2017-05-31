@@ -9,6 +9,7 @@ import { ProductCard } from '../pages/product-card/product-card';
 import { ProductComments } from '../pages/product-comments/product-comments';
 import { ProductDetails } from '../pages/product-details/product-details';
 import { ProductPrices } from '../pages/product-prices/product-prices';
+import { PriceModal } from '../pages/product-details/price-modal/price-modal';
 import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -23,7 +24,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ProductCard,
     ProductComments,
     ProductDetails,
-    ProductPrices
+    ProductPrices,
+    PriceModal
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ProductCard,
     ProductComments,
     ProductDetails,
-    ProductPrices
+    ProductPrices,
+    PriceModal
   ],
   providers: [
     StatusBar,

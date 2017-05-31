@@ -28,9 +28,9 @@
 	   
   	</ion-toolbar>
 </ion-header>
-<ion-content padding>
+<ion-content >
  
- <page-product-details *ngIf="icons=='overview'"></page-product-details>
+ <page-product-details *ngIf="icons=='overview'" [product]="product"></page-product-details>
  
  <page-product-prices *ngIf="icons=='prices'"></page-product-prices>
  
