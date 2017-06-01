@@ -13,7 +13,7 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ProductPage {
   product: any = {};
-  icons: any = "overview" ;
+  icons: any = "prices" ;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -26,9 +26,37 @@ export class ProductPage {
       name:" Product 1 ",
       imageUrl:"https://dummyimage.com/600x400/000/fff",
       confirms: 15,
-      fakes: 5
+      fakes: 5,
+      prices:  [
+        {
+          id:1,
+          price:500,
+          confirm:15,
+          disconfirm:22,
+          location:' 22 masr helwan el zra3y',
+          image:'https://dummyimage.com/600x400/000/fff',
+          username:'Ahmed'
+        },
+        {
+          id:1,
+          price:300,
+          confirm:5,
+          disconfirm:2,
+          location:' 22 masr helwan el zra3y',
+          image:'https://dummyimage.com/600x400/000/fff',
+          username:'Mahmoud'
+        },
+        {
+          id:1,
+          price:200,
+          confirm:115,
+          disconfirm:222,
+          location:' 22 masr helwan el zra3y',
+          image:'https://dummyimage.com/600x400/000/fff',
+          username:'Ali'
+        }
+        ]
     }
-    ;
   }
   
   logSegment(){

@@ -32,7 +32,7 @@
  
  <page-product-details *ngIf="icons=='overview'" [product]="product"></page-product-details>
  
- <page-product-prices *ngIf="icons=='prices'"></page-product-prices>
+ <page-product-prices [prices]="product.prices" *ngIf="icons=='prices'"></page-product-prices>
  
  <page-product-comments *ngIf="icons=='comments'"></page-product-comments>
 

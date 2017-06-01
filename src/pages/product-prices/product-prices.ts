@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -12,12 +12,17 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'product-prices.html',
 })
 export class ProductPrices {
-
+  @Input() prices;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProductPrices');
+  confirmPrice(id: any){
+  	console.log(id, 'confirm');
+  	
   }
-
+  fakePrice(id: any){
+  	console.log(id,'fake');
+  	
+  }
 }
