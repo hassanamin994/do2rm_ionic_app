@@ -7,7 +7,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Add new price 
+      Add new price
     </ion-title>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
@@ -34,11 +34,11 @@
 	  </ion-item>
 
 	  <ion-item>
-	  	 <button ion-button (click)="getCurrentLocation()">Get current location!</button>
+	  	 <button ion-button (click)="getCurrentPosition()">Get current location!</button>
 	  </ion-item>
 
 	</ion-list>
-	<div #map id="map" style="height:100%;"></div>
+	<div #map id="map" style="height:100%; width: 100%"></div>
 	<button ion-button (click)="addPrice()" block color="secondary"> Add</button>
 
 </ion-content>

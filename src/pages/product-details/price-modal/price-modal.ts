@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AlertController, ViewController, NavController, NavParams } from 'ionic-angular';
-import { GoogleMaps, GoogleMap } from '@ionic-native/google-maps'
+declare var google;
+
 /**
  * Generated class for the PriceModal page.
  *
@@ -12,15 +13,18 @@ import { GoogleMaps, GoogleMap } from '@ionic-native/google-maps'
   templateUrl: 'price-modal.html',
 })
 export class PriceModal {
-  price: number = 0 ; 
+  @ViewChild('map') mapElement: ElementRef;
+  map: any;
+  price: number = 0 ;
   location: string = "" ;
-  constructor(public googleMaps: GoogleMaps, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
-     
-  
+  constructor( public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PriceModal');
+      this.loadMap();
+    console.log('ionViewDidLoad price modal')
   }
 
   dismiss(){
@@ -31,48 +35,19 @@ export class PriceModal {
 
   }
 
-  addPrice(){
-  	console.log(this.price, this.location);
-  	
+  loadMap(){
+    let latLng = new google.maps.LatLng(-34.9290, 138.6010)
+    let mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
   }
 
-  loadMap(){
+  addPrice(){
 
-    let element: HTMLElement = document.getElementById('map');
-    let map: GoogleMap = this.googleMaps.create(element);
-    // map.
-    // map.getMyLocation(location =>{
-    //   map.addMarker({
-    //     'position': location.latLng
-    //   })
-    // })
-
-    // navigator
-    let options = {
-       enableHighAccuracy:true
-     };
-
-    navigator.geolocation.getCurrentPosition((position)=>{
-
-      let alert = this.alertCtrl.create({
-        title: 'Success!',
-        subTitle: JSON.stringify(position),
-        buttons: ['OK']
-      });
-      
-      alert.present();
-
-    },(err) => {
-
-        let alert = this.alertCtrl.create({
-        title: 'Fail!',
-        subTitle: JSON.stringify(err),
-        buttons: ['OK']
-      });
-      alert.present();
-
-    } ,options);
-    
 
   }
 
