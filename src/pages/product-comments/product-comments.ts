@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output , EventEmitter } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -12,12 +12,24 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'product-comments.html',
 })
 export class ProductComments {
-
+  
+  @Input() comments: any;
+  @Output() commentAdded = new EventEmitter<string>();
+  
+  newComment: string = "";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductComments');
+    console.log(this.comments);
+  }
+
+  addComment(){
+  	let comment = this.newComment.trim()
+  	if(comment){
+	  	this.commentAdded.emit(comment);
+  	}
   }
 
 }

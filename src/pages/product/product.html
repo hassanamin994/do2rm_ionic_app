@@ -34,7 +34,7 @@
  
  <page-product-prices [prices]="product.prices" *ngIf="icons=='prices'"></page-product-prices>
  
- <page-product-comments *ngIf="icons=='comments'"></page-product-comments>
+ <page-product-comments (commentAdded)="onAddComment($event)" [comments]="product.comments" *ngIf="icons=='comments'"></page-product-comments>
 
 <button ion-button (click)="logSegment()"></button>
 product page

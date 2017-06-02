@@ -13,7 +13,7 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ProductPage {
   product: any = {};
-  icons: any = "prices" ;
+  icons: any = "comments" ;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -55,6 +55,24 @@ export class ProductPage {
           image:'https://dummyimage.com/600x400/000/fff',
           username:'Ali'
         }
+        ],
+        comments: [
+          {
+            username: 'Ahmed',
+            user_image: 'https://dummyimage.com/600x400/000/fff',
+            body: 'This is a dummy comment'
+          },
+          {
+            username: 'Ali',
+            user_image: 'https://dummyimage.com/600x400/000/fff',
+            body: 'This is a dummy comment'
+          },
+          {
+            username: 'Hassan',
+            user_image: 'https://dummyimage.com/600x400/000/fff',
+            body: 'This is a dummy comment'
+          },
+
         ]
     }
   }
@@ -62,6 +80,11 @@ export class ProductPage {
   logSegment(){
   	console.log(this.icons);
   	
+  }
+
+  onAddComment(comment: string){
+    // make request to add comment here
+    console.log(comment, 'from product ts ');
   }
 
 }
