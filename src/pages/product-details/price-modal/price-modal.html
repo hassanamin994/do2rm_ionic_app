@@ -25,16 +25,17 @@
 
 	  <ion-item>
 	    <ion-label fixed>Price</ion-label>
-	    <ion-input type="number" [(ngModel)]="price"></ion-input>
+	    <ion-input type="number" [(ngModel)]="price.price"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label fixed>Store name:</ion-label>
+	    <ion-input type="text" [(ngModel)]="price.store_name"></ion-input>
 	  </ion-item>
 
 	  <ion-item>
 	    <ion-label fixed>Location</ion-label>
-	    <ion-input type="text" [(ngModel)]="location"></ion-input>
-	  </ion-item>
-
-	  <ion-item>
-	  	 <button ion-button (click)="getCurrentPosition()">Get current location!</button>
+	    <ion-input type="text" [(ngModel)]="price.location"></ion-input>
 	  </ion-item>
 
 	</ion-list>
