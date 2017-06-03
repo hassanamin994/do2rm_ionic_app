@@ -13,7 +13,7 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ProductPage {
   product: any = {};
-  icons: any = "comments" ;
+  icons: any = "overview" ;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

@@ -9,6 +9,7 @@ import { ProductCard } from '../pages/product-card/product-card';
 import { ProductComments } from '../pages/product-comments/product-comments';
 import { ProductDetails } from '../pages/product-details/product-details';
 import { ProductPrices } from '../pages/product-prices/product-prices';
+import { ProductChart } from '../pages/product-chart/product-chart';
 import { PriceModal } from '../pages/product-details/price-modal/price-modal';
 import { ListPage } from '../pages/list/list';
 import { GoogleMaps } from '@ionic-native/google-maps';
@@ -26,7 +27,8 @@ import { HttpModule } from '@angular/http';
     ProductComments,
     ProductDetails,
     ProductPrices,
-    PriceModal
+    PriceModal,
+    ProductChart,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,9 @@ import { HttpModule } from '@angular/http';
     ProductComments,
     ProductDetails,
     ProductPrices,
-    PriceModal
+    PriceModal,
+    ProductChart,
+
   ],
   providers: [
     StatusBar,
