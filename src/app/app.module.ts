@@ -17,6 +17,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { HttpModule } from '@angular/http';
     StatusBar,
     SplashScreen,
     GoogleMaps,
+    BarcodeScanner,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
