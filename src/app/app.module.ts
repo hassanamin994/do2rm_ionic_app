@@ -12,12 +12,15 @@ import { ProductPrices } from '../pages/product-prices/product-prices';
 import { ProductChart } from '../pages/product-chart/product-chart';
 import { PriceModal } from '../pages/product-details/price-modal/price-modal';
 import { UserPage } from '../pages/user/user';
+import { RegistrationPage } from '../pages/registration/registration';
 import { ListPage } from '../pages/list/list';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { Facebook } from '@ionic-native/facebook';
+import {Camera, CameraOptions} from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     ProductPrices,
     PriceModal,
     ProductChart,
-    UserPage
+    UserPage,
+    RegistrationPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     ProductPrices,
     PriceModal,
     ProductChart,
-    UserPage
+    UserPage,
+    RegistrationPage
 
   ],
   providers: [
@@ -58,6 +63,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     SplashScreen,
     GoogleMaps,
     BarcodeScanner,
+    Facebook,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
