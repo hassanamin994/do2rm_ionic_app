@@ -23,6 +23,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Facebook } from '@ionic-native/facebook';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import {IonicStorageModule} from '@ionic/storage';
+import { SpeechRecognition } from '@ionic-native/speech-recognition';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import {IonicStorageModule} from '@ionic/storage';
     BarcodeScanner,
     Facebook,
     Camera,
+    SpeechRecognition,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -25,6 +25,7 @@
         "@ionic-native/core": "3.10.2",
         "@ionic-native/facebook": "^3.12.1",
         "@ionic-native/google-maps": "^3.10.3",
+        "@ionic-native/speech-recognition": "^3.12.1",
         "@ionic-native/splash-screen": "3.10.2",
         "@ionic-native/status-bar": "3.10.2",
         "@ionic/storage": "^2.0.1",
