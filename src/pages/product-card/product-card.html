@@ -8,7 +8,7 @@
 <ion-card margin>
 
   <ion-thumbnail >
-   		<img src="{{product.imageUrl}}" />
+   		<img (click)="openProductPage(product.id)" src="{{product.imageUrl}}" />
    		<div class="card-price" *ngIf="home" ><div class="price">{{product.price}}$</div></div>
   </ion-thumbnail>
 

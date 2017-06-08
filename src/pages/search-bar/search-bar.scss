@@ -6,10 +6,12 @@ page-search-bar {
 		background-color: transparent;
 
 	}
-	
+	ion-input{
+		padding:0;
+	}
 	.camera{
-     	height: 40px !important;
-     	width: 40px !important;
+     	height: 30px !important;
+     	width: 30px !important;
      	background-color: #B9E838;
      	margin:0px !important;
      }

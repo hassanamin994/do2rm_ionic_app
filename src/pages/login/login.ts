@@ -41,14 +41,13 @@ export class LoginPage {
   public login() {
     this.showLoading()
     
-  
-   // this.MainSrv.login(this.loginCredentials)
-   //  .catch((error:any)=>{this.loading.dismiss();this.error='*wrong username or password';return  Observable.throw(error.json().error || 'Server error')})
-   //  .subscribe((data)=>{
-   //  	this.loading.dismiss()
-   //  	this.storage.set('token','JWT '+data['token']);
-   //  	this.nav.setRoot(HomePage);
-   //  })
+   this.MainSrv.login(this.loginCredentials)
+    .catch((error:any)=>{this.loading.dismiss();this.error='*wrong username or password';return  Observable.throw(error.json().error || 'Server error')})
+    .subscribe((data)=>{
+    	this.loading.dismiss()
+    	this.storage.set('token','JWT '+data['token']);
+    	this.nav.setRoot(HomePage);
+    })
   }
 
   showLoading() {
