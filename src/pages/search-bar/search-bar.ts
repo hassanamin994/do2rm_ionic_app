@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AlertController } from 'ionic-angular';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
-
+import { SearchPage } from '../search/search';
 /**
  * Generated class for the SearchBarPage page.
  *
@@ -16,6 +16,7 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
 })
 export class SearchBarPage {
 	speechRecognitionSubscribtion: any ;
+	searchText: string = "" ;
 	constructor(private speechRecognition: SpeechRecognition, private alertCtrl: AlertController, public barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams) {
 	}
 
@@ -26,6 +27,10 @@ export class SearchBarPage {
 	    this.barcodeScanner.scan().then((barcodeData) => {
 	     // Success! Barcode data is here
 	     this.showAlert("Barcode data", JSON.stringify(barcodeData));
+	     if(!barcodeData.cancelled){
+	     	this.searchText = barcodeData.text;
+	     	this.navCtrl.push(SearchPage, {search: {by: "barcode", barcode: barcodeData.text}})
+	     }
 	    }, (err) => {
 	        // An error occurred
 	        console.log(err);
@@ -59,7 +64,10 @@ export class SearchBarPage {
 	  startListening(){
 	     this.speechRecognitionSubscribtion =  this.speechRecognition.startListening()
 	      .subscribe(
-	        (matches: Array<string>) => this.showAlert('matches',JSON.stringify(matches)),
+	        (matches: Array<string>) => {
+			     	this.searchText = matches[0];
+			     	this.navCtrl.push(SearchPage, {search: {by: "voice", text: matches[0]}})
+	        },
 	        (onerror) => console.log('error:', onerror)
 	      )
 	  }
