@@ -14,6 +14,8 @@ import { PriceModal } from '../pages/product-details/price-modal/price-modal';
 import { UserPage } from '../pages/user/user';
 import { RegistrationPage } from '../pages/registration/registration';
 import { LoginPage } from '../pages/login/login';
+import { SearchPage } from '../pages/search/search';
+import { SearchBarPage } from '../pages/search-bar/search-bar';
 import { ListPage } from '../pages/list/list';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -39,7 +41,9 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
     ProductChart,
     UserPage,
     RegistrationPage,
-    LoginPage
+    LoginPage,
+    SearchPage,
+    SearchBarPage
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,9 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
     ProductChart,
     UserPage,
     RegistrationPage,
-    LoginPage
+    LoginPage,
+    SearchPage,
+    SearchBarPage
 
   ],
   providers: [

@@ -1,0 +1,26 @@
+<!--
+  Generated template for the SearchBarPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-row>
+
+	<ion-item col-8> 
+	    <ion-searchbar id="search" type="text" placeholder="Search" ></ion-searchbar>
+	</ion-item>
+
+	<ion-item col-2>
+		<button  ion-button icon-only (click)="openBarcodeSearch()" >
+			<ion-icon name="camera"></ion-icon>
+		</button>
+	</ion-item>
+
+	<ion-item col-2>
+		<button  ion-button icon-only (mousedown)="startRecording()" (mouseup)="stopRecording()" >
+			<ion-icon name="mic"></ion-icon>
+		</button>
+	</ion-item>
+</ion-row>
