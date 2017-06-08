@@ -15,11 +15,29 @@ export class SearchPage {
 
   constructor(private alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams) {
   	this.showAlert('searched',JSON.stringify(this.navParams.get('search')));
+
+  	if(this.navParams.get('search')['by'] == 'voice'){
+  		this.searchByText(this.navParams.get('search')['text']);
+  	}else{
+  		this.searchByBarcode(this.navParams.get('search')['barcode'])
+  	}
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
   }
+
+  searchByBarcode(barcode){
+  	console.log(barcode)
+  	// load products
+  }
+
+  searchByText(text){
+  	console.log('searching by text');
+  	// load products 
+  }
+
 	showAlert(heading, body){
 		let alert = this.alertCtrl.create({
 		  title: heading,

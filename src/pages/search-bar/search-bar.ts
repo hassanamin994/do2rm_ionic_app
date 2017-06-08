@@ -103,8 +103,8 @@ export class SearchBarPage {
 	      });
 	    alert.present();
 	  }
-	  search(event){
-	    alert(event)
+	  search(){
+	    this.navCtrl.push(SearchPage, {search: {by: "voice", text: this.searchText }})
 	  }
 
 
