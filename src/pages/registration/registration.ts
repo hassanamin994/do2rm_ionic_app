@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams ,Loading,LoadingController} from 'ionic-angular';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { AlertController } from 'ionic-angular';
 import {Camera, CameraOptions} from '@ionic-native/camera';
+import {MainService} from '../../providers/main';
 import { LoginPage } from '../login/login';
+import {Observable} from 'rxjs/Rx';
+
+
+
 
 
 /**
@@ -15,11 +20,14 @@ import { LoginPage } from '../login/login';
 @Component({
   selector: 'page-registration',
   templateUrl: 'registration.html',
+  providers: [MainService]
 })
 export class RegistrationPage {
-  newuser: any = {};
+  newuser: any = { email:'' ,password:'',password_confirmation:"",username:""};
+  error:any=null
+  loading: Loading;
 
-  constructor(private camera: Camera, private fb: Facebook, private alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public MainSrv:MainService, private camera: Camera, private fb: Facebook,public nav: NavController, private alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -27,7 +35,22 @@ export class RegistrationPage {
   }
 
   register(){
-    console.log('register')
+   this.showLoading()
+   this.MainSrv.register({user:this.newuser})
+    .catch((error:any)=>{this.loading.dismiss();console.log(JSON.stringify(error) || error);this.error=JSON.stringify(error) || error;return  Observable.throw(error.json().error || 'Server error')})
+    .subscribe((data)=>{
+      this.loading.dismiss()
+      console.log(JSON.stringify(data))
+      this.nav.setRoot(LoginPage);
+    })
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
   }
 
   registerFacebook(){

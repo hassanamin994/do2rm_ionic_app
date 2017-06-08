@@ -1,3 +1,4 @@
+
 <ion-content class="login-content" padding>
   <ion-row class="logo-row">
     <ion-col></ion-col>
@@ -13,11 +14,11 @@
           <ion-list inset>
             <p class='error'>{{error}}</p>    
             <ion-item>
-              <ion-input type="text" placeholder="Username" name="email" [(ngModel)]="loginCredentials._username" required></ion-input>
+              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="loginCredentials.email" required></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="loginCredentials._password" required></ion-input>
+              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="loginCredentials.password" required></ion-input>
             </ion-item>
             <ion-item>
               <a (click)="register()">Dont have an account? Register now!</a>

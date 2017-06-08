@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AlertController } from 'ionic-angular';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
@@ -16,7 +16,8 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
 })
 export class HomePage {
   products: Array<any> = [];
-  constructor(private speechRecognition: SpeechRecognition, private alertCtrl: AlertController, public barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private speechRecognition: SpeechRecognition, private alertCtrl: AlertController, public barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams, public menuCtrl:MenuController) {
+    menuCtrl.enable(true);  menuCtrl.enable(true);
   }
 
   ionViewDidLoad() {

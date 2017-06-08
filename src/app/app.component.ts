@@ -34,9 +34,7 @@ export class MyApp {
       { title: 'Add Product', component: ProductNewPage },
       { title: 'Profile', component: UserPage }
     ];
-    this.rootPage=HomePage
-    //storage.get('token').then((val)=>{if(val){this.rootPage=HomePage}else{this.rootPage=RegistrationPage}}).catch((err)=>{console.log(err)})
-
+    storage.get('token').then((val)=>{if(val){this.rootPage=HomePage}else{this.rootPage=RegistrationPage}}).catch((err)=>{console.log(err)})
   }
 
   initializeApp() {
@@ -51,6 +49,6 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.push(page.component);
   }
 }

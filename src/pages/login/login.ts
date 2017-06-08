@@ -20,10 +20,10 @@ import { RegistrationPage } from '../registration/registration';
 })
 export class LoginPage {
 	loading: Loading;
-	loginCredentials = { _username: '', _password: '' };
+	loginCredentials = { email:'' ,password:''};
 	error:any=null
 
-  constructor(public storage: Storage,public MainSrv:MainService,public menuCtrl:MenuController,public nav: NavController,public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController) {
+  constructor(public storage: Storage,public MainSrv:MainService,public menuCtrl:MenuController,public nav: NavController, public navParams: NavParams,public loadingCtrl: LoadingController) {
   	menuCtrl.enable(false)
   	if(navParams.get('error'))
   		this.error=navParams.get('error');
@@ -35,14 +35,14 @@ export class LoginPage {
   }
 
   public login() {
-    
     this.showLoading()
     
-   this.MainSrv.login(this.loginCredentials)
-    .catch((error:any)=>{this.loading.dismiss();this.error='*wrong username or password';return  Observable.throw(error.json().error || 'Server error')})
+   this.MainSrv.login({auth:this.loginCredentials})
+    .catch((error:any)=>{this.loading.dismiss();console.log(JSON.stringify(error) || error);this.error="*wrong email or password";return  Observable.throw( 'Server error')})
     .subscribe((data)=>{
+      console.log(JSON.stringify(data) || data)
     	this.loading.dismiss()
-    	this.storage.set('token','JWT '+data['token']);
+    	this.storage.set('token','Bearer '+data['token']);
     	this.nav.setRoot(HomePage);
     })
   }
@@ -58,7 +58,7 @@ export class LoginPage {
 
 
   register(){
-    this.navCtrl.push(RegistrationPage)
+    this.nav.push(RegistrationPage)
   }
  
 

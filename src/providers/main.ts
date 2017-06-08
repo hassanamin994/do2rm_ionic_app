@@ -8,18 +8,18 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class MainService {
   headers:Headers
-  domain='https:https://do2rom.herokuapp.com'
+  domain='https://do2rom.herokuapp.com'
   constructor(public http: Http,public storage: Storage) {
     console.log('Hello main Provider');
   }
   
   login(data){
     let headers=new Headers ({ 'Content-Type': 'application/json' });
-    return this.http.post(this.domain+"/user_token",data,{headers:headers}).map(res=>res.json());
+    return this.http.post(this.domain+"/api/user_token",data,{headers:headers}).map(res=>res.json());
   }
   register(data){
     let headers=new Headers ({ 'Content-Type': 'application/json' });
-    return this.http.post(this.domain+"/users",data,{headers:headers}).map(res=>res.json());
+    return this.http.post(this.domain+"/api/users",data,{headers:headers}).map(res=>res.json());
 
   }
   async sendcode(data){
