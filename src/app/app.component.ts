@@ -9,6 +9,7 @@ import { ProductPage } from '../pages/product/product';
 import { UserPage } from '../pages/user/user';
 import { RegistrationPage } from '../pages/registration/registration';
 import { LoginPage } from '../pages/login/login';
+import { ProductNewPage } from '../pages/product-new/product-new';
 import { AuthenticationService } from '../authentication.service';
 import {Storage} from '@ionic/storage';
 
@@ -30,8 +31,7 @@ export class MyApp {
       { title: 'Register', component: RegistrationPage },
       { title: 'Login', component: LoginPage },
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
-      { title: 'Product', component: ProductPage },
+      { title: 'Add Product', component: ProductNewPage },
       { title: 'Profile', component: UserPage }
     ];
     this.rootPage=HomePage

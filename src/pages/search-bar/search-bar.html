@@ -1,20 +1,34 @@
 
 
 <ion-row class='search'>
+	<ion-grid>
 
-	<ion-item col-8> 
-	    <ion-searchbar id="search" type="text" round [(ngModel)]="searchText" placeholder="Search" ></ion-searchbar>
-	</ion-item>
+		<ion-row>
+			<ion-item col-10> 
+			    <ion-searchbar id="search" type="text" round [(ngModel)]="searchText" placeholder="Search" ></ion-searchbar>
+			</ion-item>
+			<ion-item col-2>
+				<button  ion-button icon-only class="camera" (click)="search()" round>
+					<ion-icon name="search"></ion-icon>
+				</button>
+			</ion-item>
+		</ion-row>
 
-	<ion-item col-2>
-		<button  ion-button icon-only class="camera" (click)="openBarcodeSearch()" round>
-			<ion-icon name="camera"></ion-icon>
-		</button>
-	</ion-item>
+		<ion-row id="search-options">
+			<ion-item col-8></ion-item>
 
-	<ion-item col-2>
-		<button  ion-button icon-only (mousedown)="startRecording()" (mouseup)="stopRecording()" >
-			<ion-icon name="mic"></ion-icon>
-		</button>
-	</ion-item>
+			<ion-item col-2>
+				<button  ion-button icon-only class="camera" (click)="openBarcodeSearch()" round>
+					<ion-icon name="barcode"></ion-icon>
+				</button>
+			</ion-item>
+
+			<ion-item col-2>
+				<button  ion-button icon-only class="camera" (mousedown)="startRecording()" (mouseup)="stopRecording()" >
+					<ion-icon name="mic"></ion-icon>
+				</button>
+			</ion-item>
+		</ion-row>
+
+	</ion-grid>
 </ion-row>

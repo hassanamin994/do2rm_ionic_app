@@ -10,6 +10,7 @@ import { ProductComments } from '../pages/product-comments/product-comments';
 import { ProductDetails } from '../pages/product-details/product-details';
 import { ProductPrices } from '../pages/product-prices/product-prices';
 import { ProductChart } from '../pages/product-chart/product-chart';
+import { ProductNewPage } from '../pages/product-new/product-new';
 import { PriceModal } from '../pages/product-details/price-modal/price-modal';
 import { UserPage } from '../pages/user/user';
 import { RegistrationPage } from '../pages/registration/registration';
@@ -44,7 +45,8 @@ import { AuthenticationService } from '../authentication.service';
     RegistrationPage,
     LoginPage,
     SearchPage,
-    SearchBarPage
+    SearchBarPage,
+    ProductNewPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,8 @@ import { AuthenticationService } from '../authentication.service';
     RegistrationPage,
     LoginPage,
     SearchPage,
-    SearchBarPage
+    SearchBarPage,
+    ProductNewPage
 
   ],
   providers: [

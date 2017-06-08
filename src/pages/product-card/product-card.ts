@@ -1,6 +1,6 @@
 import {Input, Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import { ProductPage } from '../product/product';
 /**
  * Generated class for the ProductCard page.
  *
@@ -32,4 +32,8 @@ export class ProductCard {
   	
   }
 
+  openProductPage(id: any){
+    this.navCtrl.push(ProductPage, {id: id});
+    console.log('open product id',id);
+  }
 }
