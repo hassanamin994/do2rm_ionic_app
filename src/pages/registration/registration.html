@@ -1,51 +1,59 @@
-<!--
-  Generated template for the RegistrationPage page.
+<ion-content class="login-content" padding>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="../../assets/logo.png"/>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="login-box">	
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Registration</ion-title>
-  </ion-navbar>
-</ion-header>
+	<form (ngSubmit)="login()" #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <p class='error'>{{error}}</p>    
+            <ion-item>
+              <ion-input  type="text" placeholder="Email" name="email" [(ngModel)]="newuser.email" required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="newuser.password" required></ion-input>
+            </ion-item> 
 
-<ion-content padding>	
-	<ion-list>
-		<ion-item>
-			<ion-label color="primary" stacked>Email</ion-label>
-			<ion-input [(ngModel)]="newuser.email" type="email" placeholder="Email "></ion-input>
-		</ion-item>
+            <ion-item>
+	            <button round (click)="selectImage()" class="camera" ion-button icon-only>
+					  <ion-icon name="camera" ></ion-icon>
+				</button>
+				<ion-thumbnail *ngIf="newuser.image">
+					<img id="profile_image" [src]="newuser.image">
+				</ion-thumbnail>
+			</ion-item>
 
-		<ion-item>
-			<ion-label color="primary" stacked>Password</ion-label>
-			<ion-input [(ngModel)]="newuser.password" type="password" placeholder="Password"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label color="primary" stacked>Confirm Password</ion-label>
-			<ion-input [(ngModel)]="newuser.password" type="password" placeholder="Confirm password"></ion-input>
-		</ion-item>
+			
+            
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">register</button>
+        </ion-col>
+      </ion-row>
+      
+    </form>
+   
+      <ion-row>
+        <ion-col class="signup-col">
+        <button (click)="registerFacebook()" class="fb-btn" ion-button>register with Facebook</button>
+        <button (click)="login()" class="login-btn" ion-button>already a member ? Login</button>
 
-		<ion-item>
-			<ion-label color="primary" stacked>Select Image</ion-label>
-			<ion-thumbnail>
-				<img id="profile_image" [src]="newuser.image">
-			</ion-thumbnail>
-		</ion-item>
+        </ion-col>
+      </ion-row>
 
-		<ion-item>
-			<button (click)="selectImage()" ion-button icon-only>
-			  <ion-icon name="camera"></ion-icon>
-			</button>
-		</ion-item>
-		<ion-item>
-			<button block (click)="register()" color="secondary" ion-button>Register</button>
-		</ion-item>
-	</ion-list>
-	<h2 text-center>OR</h2>
-	<button (click)="registerFacebook()" ion-button icon-left block> <ion-icon name="facebook"></ion-icon>Regster using Facebook!</button>
 
+	
+
+  </div>
 </ion-content>

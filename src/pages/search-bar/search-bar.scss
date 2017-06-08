@@ -1,3 +1,19 @@
 page-search-bar {
+	.content{
+		background-color: #F7F7F7 !important;
+	}
+	.search ion-item{
+		background-color: transparent;
 
+	}
+	
+	.camera{
+     	height: 40px !important;
+     	width: 40px !important;
+     	background-color: #B9E838;
+     	margin:0px !important;
+     }
+     .item-inner{
+     	border: none !important;
+     }
 }

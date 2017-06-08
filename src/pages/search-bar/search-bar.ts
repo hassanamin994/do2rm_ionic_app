@@ -103,6 +103,9 @@ export class SearchBarPage {
 	      });
 	    alert.present();
 	  }
+	  search(event){
+	    alert(event)
+	  }
 
 
 }

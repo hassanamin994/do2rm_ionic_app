@@ -51,7 +51,6 @@ import { AuthenticationService } from '../authentication.service';
     HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-
   ],
   bootstrap: [IonicApp],
   entryComponents: [

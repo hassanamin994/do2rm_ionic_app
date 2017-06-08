@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { AlertController } from 'ionic-angular';
 import {Camera, CameraOptions} from '@ionic-native/camera';
+import { LoginPage } from '../login/login';
+
 
 /**
  * Generated class for the RegistrationPage page.
@@ -102,6 +104,9 @@ export class RegistrationPage {
     // Handle error
     });
 
+  }
+  login(){
+    this.navCtrl.push(LoginPage)
   }
 
 }

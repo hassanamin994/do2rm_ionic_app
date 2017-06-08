@@ -17,6 +17,9 @@
 
 
 <ion-content >
+
+
+	
 	
 	<page-search-bar>
 	</page-search-bar>
@@ -24,7 +27,7 @@
 	<ion-row>
 
 		<ion-row *ngFor="let product of products">
-			<page-product-card [product]="product" ></page-product-card>
+			<page-product-card [product]="product" [home]="true" ></page-product-card>
 		</ion-row>	
 
 	</ion-row>

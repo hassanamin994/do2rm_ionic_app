@@ -22,7 +22,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(private storage: Storage, private authenticationService: AuthenticationService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -34,18 +34,8 @@ export class MyApp {
       { title: 'Product', component: ProductPage },
       { title: 'Profile', component: UserPage }
     ];
-    this.storage.keys().then(res => {
-      if(res.indexOf('access_token') == -1){
-        this.rootPage = RegistrationPage;
-        console.log(res.indexOf('access_token'))
-      }
-      else
-        this.rootPage = HomePage;
-    })
-    if(authenticationService.isLoggedIn()){
-      this.rootPage = HomePage;
-    }
-    console.log(authenticationService.isLoggedIn(), 'is logged in ')
+    this.rootPage=HomePage
+    //storage.get('token').then((val)=>{if(val){this.rootPage=HomePage}else{this.rootPage=RegistrationPage}}).catch((err)=>{console.log(err)})
 
   }
 

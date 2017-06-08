@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Http } from '@angular/http';
-import { APIRoutes } from '../../API.routes';
-import { HomePage } from '../home/home';
+import {  NavController, NavParams , Loading,LoadingController,MenuController  } from 'ionic-angular';
+import {HomePage} from '../home/home'
+import {MainService} from '../../providers/main'
+import { Storage } from '@ionic/storage';
+import {Observable} from 'rxjs/Rx';
 import { RegistrationPage } from '../registration/registration';
-import { AuthenticationService } from '../../authentication.service';
 
 /**
  * Generated class for the LoginPage page.
@@ -12,46 +12,57 @@ import { AuthenticationService } from '../../authentication.service';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+
 @Component({
-  selector: 'page-login',
+  selector:'page-login',
   templateUrl: 'login.html',
+  providers: [MainService]
 })
 export class LoginPage {
+	loading: Loading;
+	loginCredentials = { _username: '', _password: '' };
+	error:any=null
   user: any = {
-  	email: "",
-  	password: ""
+    email: "",
+    password: ""
   };
-  error: string = "" ;
-  constructor(private authenticationService: AuthenticationService, private http: Http, public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(public storage: Storage,public MainSrv:MainService,public menuCtrl:MenuController,public nav: NavController,public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController) {
+  	menuCtrl.enable(false)
+  	if(navParams.get('error'))
+  		this.error=navParams.get('error');
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    console.log('ionViewDidLoad Login');
   }
 
-  login(){
-  	if(this.user.email.trim() && this.user.password.trim()){
-
-  		this.getAccessToken();
-
-  	}else{
-  		this.error = "Please enter email and password";
-  	}
+  public login() {
+    this.showLoading()
+    
+    
+   // this.MainSrv.login(this.loginCredentials)
+   //  .catch((error:any)=>{this.loading.dismiss();this.error='*wrong username or password';return  Observable.throw(error.json().error || 'Server error')})
+   //  .subscribe((data)=>{
+   //  	this.loading.dismiss()
+   //  	this.storage.set('token','JWT '+data['token']);
+   //  	this.nav.setRoot(HomePage);
+   //  })
   }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
+  }
+
+
   register(){
     this.navCtrl.push(RegistrationPage)
   }
-  private getAccessToken(){
-  	this.http.post(APIRoutes.get_login_route(),this.user).subscribe(res => {
-  		console.log(res);
-      // if success, open application.
-      // this.navCtrl.setRoot(HomePage)
-      // else show error message
-  	})
-    // this.authenticationService.login('asdasdasdasdas',{username:"hassan"})
-    // this.navCtrl.setRoot(HomePage)
-    
-  }
+ 
 
 }

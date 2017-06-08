@@ -4,31 +4,35 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-card >
-   <ion-row>
-		<ion-row>
-			
-			<ion-thumbnail >
-		   		<img src="{{product.imageUrl}}" />
-		  	</ion-thumbnail>	
-		   <ion-item text-center >
-		   		<h3>{{product.name}}</h3>
-		   		<div class="confirm">{{product.confirms}}: confirm</div>
-		   		<div class="fake">{{product.fakes}}: fake</div>
-		   </ion-item>
 
-		</ion-row>	
+<ion-card margin>
 
-	   	<ion-row>
+  <ion-thumbnail >
+   		<img src="{{product.imageUrl}}" />
+   		<div class="card-price" *ngIf="home" ><div class="price">{{product.price}}$</div></div>
+  </ion-thumbnail>
 
-		   	<ion-item col-6 > 
-		   		<button ion-button color="secondary" (click)="doConfirm(product.id)" block>Confirm</button>
-		   	</ion-item>
-		   	<ion-item col-6 >
-			   		<button ion-button color="danger" (click)="doFake(product.id)" block>Fake</button>
-		   	</ion-item>
-		   
-	   	</ion-row>
+  <ion-card-content>
+  	<ion-row>
+  	<div col-7 class="title">
+  		<h1>{{product.name}}</h1>
+  	</div>
+  	<div col-5>
+  		<ion-badge item-end class="confirm blueb">confirm : {{product.confirms}}</ion-badge>
+  		<ion-badge item-end class="fake">fake : {{product.fakes}}</ion-badge>
+  	</div>
+  	</ion-row>
+    
+	
+  </ion-card-content>
+  <hr>
+  <ion-row>
+  	<ion-col class="border" > 
+		<button ion-button icon-left clear small class="blue" (click)="doConfirm(product.id)" block>Confirm</button>
+	</ion-col>
+	<ion-col >
+   		<button ion-button icon-left clear small color="danger" (click)="doFake(product.id)" block>Fake</button>
+	</ion-col>
+  </ion-row>
 
-   </ion-row>
 </ion-card>
