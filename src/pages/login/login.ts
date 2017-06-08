@@ -7,6 +7,7 @@ import {Observable} from 'rxjs/Rx';
 
 
 
+
 @Component({
   selector:'page-login',
   templateUrl: 'login.html',
@@ -21,6 +22,7 @@ export class LoginPage {
   	menuCtrl.enable(false)
   	if(navParams.get('error'))
   		this.error=navParams.get('error');
+
   }
 
   ionViewDidLoad() {
@@ -46,6 +48,22 @@ export class LoginPage {
       dismissOnPageChange: true
     });
     this.loading.present();
+  }
+
+  login(){
+  	if(this.user.email.trim() && this.user.password.trim()){
+
+  		this.getAccessToken();
+
+  	}else{
+  		this.error = "Please enter email and password";
+  	}
+  }
+
+  private getAccessToken(){
+  	this.http.post(APIRoutes.get_login_route(),this.user).subscribe(res => {
+  		console.log(res);
+  	})
   }
 
 }

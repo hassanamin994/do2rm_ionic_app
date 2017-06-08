@@ -1,0 +1,14 @@
+
+
+<ion-row class='search'>
+
+		<ion-item col-9> 
+			<ion-searchbar round (ionInput)="search($event)"></ion-searchbar>
+		</ion-item>
+
+		<ion-item col-3>
+			<button  ion-button icon-only class="camera" (click)="openBarcodeSearch()" round>
+				<ion-icon name="camera"></ion-icon>
+			</button>
+		</ion-item>
+	</ion-row>

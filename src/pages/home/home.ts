@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AlertController } from 'ionic-angular';
+import { SpeechRecognition } from '@ionic-native/speech-recognition';
 
 /**
  * Generated class for the Home page.
@@ -14,8 +15,8 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'home.html',
 })
 export class HomePage {
-  products: Array<any> = []
-  constructor(private alertCtrl: AlertController, public barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams) {
+  products: Array<any> = [];
+  constructor(private speechRecognition: SpeechRecognition, private alertCtrl: AlertController, public barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -46,29 +47,7 @@ export class HomePage {
 
     ]
   }
-  openBarcodeSearch(){
-    this.barcodeScanner.scan().then((barcodeData) => {
-     // Success! Barcode data is here
-      console.log(barcodeData);
-      let alert = this.alertCtrl.create({
-        title: 'Barcode data',
-        subTitle: JSON.stringify(barcodeData),
-        buttons: ['Dismiss']
-      });
-      alert.present();
-    }, (err) => {
-      console.log(err);
-        // An error occurred
-        let alert = this.alertCtrl.create({
-          title: 'Barcode err',
-          subTitle: JSON.stringify(err),
-          buttons: ['Dismiss']
-        });
-    });
-  }
-  search(event){
-    alert(event)
-  }
 
+  
 
 }

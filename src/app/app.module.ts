@@ -14,6 +14,9 @@ import { ProductChart } from '../pages/product-chart/product-chart';
 import { PriceModal } from '../pages/product-details/price-modal/price-modal';
 import { UserPage } from '../pages/user/user';
 import { RegistrationPage } from '../pages/registration/registration';
+import { LoginPage } from '../pages/login/login';
+import { SearchPage } from '../pages/search/search';
+import { SearchBarPage } from '../pages/search-bar/search-bar';
 import { ListPage } from '../pages/list/list';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -22,8 +25,8 @@ import { HttpModule } from '@angular/http';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Facebook } from '@ionic-native/facebook';
 import {Camera, CameraOptions} from '@ionic-native/camera';
-import { IonicStorageModule } from '@ionic/storage';
-
+import {IonicStorageModule} from '@ionic/storage';
+import { SpeechRecognition } from '@ionic-native/speech-recognition';
 
 @NgModule({
   declarations: [
@@ -39,13 +42,15 @@ import { IonicStorageModule } from '@ionic/storage';
     ProductChart,
     UserPage,
     RegistrationPage,
-    LoginPage
+    LoginPage,
+    SearchPage,
+    SearchBarPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -61,7 +66,9 @@ import { IonicStorageModule } from '@ionic/storage';
     ProductChart,
     UserPage,
     RegistrationPage,
-    LoginPage
+    LoginPage,
+    SearchPage,
+    SearchBarPage
 
   ],
   providers: [
@@ -71,6 +78,7 @@ import { IonicStorageModule } from '@ionic/storage';
     BarcodeScanner,
     Facebook,
     Camera,
+    SpeechRecognition,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
