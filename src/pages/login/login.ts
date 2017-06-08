@@ -33,13 +33,13 @@ export class LoginPage {
     this.showLoading()
     
     
-   this.MainSrv.login(this.loginCredentials)
+  /* this.MainSrv.login(this.loginCredentials)
     .catch((error:any)=>{this.loading.dismiss();this.error='*wrong username or password';return  Observable.throw(error.json().error || 'Server error')})
     .subscribe((data)=>{
     	this.loading.dismiss()
     	this.storage.set('token','JWT '+data['token']);
     	this.nav.setRoot(HomePage);
-    })
+    })*/
   }
 
   showLoading() {
@@ -50,15 +50,7 @@ export class LoginPage {
     this.loading.present();
   }
 
-  login(){
-  	if(this.user.email.trim() && this.user.password.trim()){
-
-  		this.getAccessToken();
-
-  	}else{
-  		this.error = "Please enter email and password";
-  	}
-  }
+ 
 
   private getAccessToken(){
   	this.http.post(APIRoutes.get_login_route(),this.user).subscribe(res => {

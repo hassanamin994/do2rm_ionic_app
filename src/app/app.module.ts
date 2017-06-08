@@ -4,7 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/login/login';
 import { ProductPage } from '../pages/product/product';
 import { ProductCard } from '../pages/product-card/product-card';
 import { ProductComments } from '../pages/product-comments/product-comments';
