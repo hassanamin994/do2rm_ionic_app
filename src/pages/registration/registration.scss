@@ -1,3 +1,75 @@
 page-registration {
-
+	.login-content {
+    background: #00b4c2;
+    
+    .logo-row {
+      padding-top: 50px;
+      padding-bottom: 20px;
+    }
+ 
+    .login-box {
+      padding: 20px 20px 0px 20px;
+      margin-top: 30px;
+    }
+ 
+    ion-row {
+       align-items: center;
+       text-align: center;
+     }
+ 
+     ion-list {
+     	 background-color: white;
+         border-radius: 30px !important;
+         padding: 20px !important;
+         font-size: 0.9em;
+         margin-bottom: 10px;
+         border: 1px solid #ffffff;
+         border-bottom: 0px !important;
+         box-shadow: none !important;
+     }
+     ion-item{
+     	background-color: white;
+     	border-radius: 30px !important;
+         padding-left: 30px !important;
+         font-size: 0.9em;
+         margin-bottom: 10px;
+         border: 1px solid #D6D5D7 ;
+         border-top: 0px !important;
+         box-shadow: none !important;
+     }
+ 
+     .signup-col {
+       margin: 0px 16px 0px 16px;
+       padding-bottom: 5px;
+     }
+ 
+     .item-inner {
+       border-bottom: 0px !important;
+       box-shadow: none !important;
+     }
+ 
+     .submit-btn {
+       background: black;
+       border-radius: 30px !important;
+     }
+     .fb-btn{
+     	background-color: black;
+     	border-radius: 30px !important;	
+     	width: 100%;
+     }
+     .login-btn{
+     	background-color: #00b4c2;
+     	border-radius: 30px !important;	
+     	width: 80%;
+     	font-size: smaller;
+     	margin-top: 20px
+     }
+     .camera{
+     	height: 40px ;
+     	width: 40px;
+     	background-color: #00b4c2;
+     }
+     
+    
+  }
 }

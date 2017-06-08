@@ -13,6 +13,7 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ProductCard {
   @Input() product: any;
+  @Input() home: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

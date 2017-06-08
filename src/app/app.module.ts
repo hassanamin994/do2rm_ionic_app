@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
 import { ProductPage } from '../pages/product/product';
 import { ProductCard } from '../pages/product-card/product-card';
 import { ProductComments } from '../pages/product-comments/product-comments';
@@ -21,6 +22,8 @@ import { HttpModule } from '@angular/http';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Facebook } from '@ionic-native/facebook';
 import {Camera, CameraOptions} from '@ionic-native/camera';
+import { IonicStorageModule } from '@ionic/storage';
+
 
 @NgModule({
   declarations: [
@@ -35,12 +38,14 @@ import {Camera, CameraOptions} from '@ionic-native/camera';
     PriceModal,
     ProductChart,
     UserPage,
-    RegistrationPage
+    RegistrationPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -55,7 +60,8 @@ import {Camera, CameraOptions} from '@ionic-native/camera';
     PriceModal,
     ProductChart,
     UserPage,
-    RegistrationPage
+    RegistrationPage,
+    LoginPage
 
   ],
   providers: [

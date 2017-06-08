@@ -26,19 +26,22 @@ export class HomePage {
     	name:" Product 1 ",
     	imageUrl:"https://dummyimage.com/600x400/000/fff",
     	confirms: 15,
-    	fakes: 5
+    	fakes: 5,
+      price:140
     },{
     	id:2,
     	name:" Product 2 ",
     	imageUrl:"https://dummyimage.com/600x400/000/fff",
     	confirms: 5,
-    	fakes: 9
+    	fakes: 9,
+      price:15
     },{
     	id:3,
     	name:" Product 3 ",
     	imageUrl:"https://dummyimage.com/600x400/000/fff",
     	confirms: 10,
-    	fakes: 3
+    	fakes: 3,
+      price:500
     },
 
     ]
@@ -62,6 +65,9 @@ export class HomePage {
           buttons: ['Dismiss']
         });
     });
+  }
+  search(event){
+    alert(event)
   }
 
 

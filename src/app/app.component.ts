@@ -8,6 +8,10 @@ import { ListPage } from '../pages/list/list';
 import { ProductPage } from '../pages/product/product';
 import { UserPage } from '../pages/user/user';
 import { RegistrationPage } from '../pages/registration/registration';
+import { LoginPage } from '../pages/login/login';
+import { Storage } from '@ionic/storage';
+
+
 
 
 @Component({
@@ -20,17 +24,20 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Register', component: RegistrationPage },
+      { title: 'Login', component: LoginPage },
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
       { title: 'Product', component: ProductPage },
       { title: 'Profile', component: UserPage }
     ];
+    this.rootPage=HomePage
+    //storage.get('token').then((val)=>{if(val){this.rootPage=HomePage}else{this.rootPage=RegistrationPage}}).catch((err)=>{console.log(err)})
 
   }
 

@@ -17,15 +17,15 @@
 
 
 <ion-content >
-	
-	<ion-row>
 
-		<ion-item col-8> 
-		    <ion-input id="search" type="text" placeholder="Search" ></ion-input>
+	<ion-row class='search'>
+
+		<ion-item col-9> 
+			<ion-searchbar round (ionInput)="search($event)"></ion-searchbar>
 		</ion-item>
 
-		<ion-item col-4>
-			<button  ion-button icon-only (click)="openBarcodeSearch()" >
+		<ion-item col-3>
+			<button  ion-button icon-only class="camera" (click)="openBarcodeSearch()" round>
 				<ion-icon name="camera"></ion-icon>
 			</button>
 		</ion-item>
@@ -34,7 +34,7 @@
 	<ion-row>
 
 		<ion-row *ngFor="let product of products">
-			<page-product-card [product]="product" ></page-product-card>
+			<page-product-card [product]="product" [home]="true" ></page-product-card>
 		</ion-row>	
 
 	</ion-row>
