@@ -19,10 +19,10 @@ export class ProductPage {
   product: any = {};
   icons: any = "overview" ;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
-    let headers=new Headers ({ 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTY3NjAyMzAsInN1YiI6eyIkb2lkIjoiNTkzMzE4ZTk3MTI5NWEwMDA0MTdjMWI3In19.onFGrGAZajzGokS9FQG9eHD-oMgFh82VfkHdWpw2lWE' });
-    this.http.get("https://do2rom.herokuapp.com/products",{headers:headers}).map(res=>res.json())
+    let headers=new Headers ({ "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTY4MDY0OTYsInN1YiI6eyIkb2lkIjoiNTkzMzEzMjE2NDRkMWU1ZmM1OWE0OWQwIn19.IVW5AhLzZmk_OKMIwazl3JqafLI_BXZ1jBe7kKU8Op4" });
+    this.http.post("https://do2rom.herokuapp.com/api/user_token",{"auth": {"email": "r@a.com", "password": "pass"}},{headers:headers}).map(res=>res.json())
     .catch((error:any)=>{console.log(JSON.stringify(error));return  Observable.throw(error.json().error || 'Server error')})
-    .subscribe((data)=>{alert(data); console.log(data)});
+    .subscribe((data)=>{alert(JSON.stringify(data)); console.log(data)});
   }
 
   ionViewDidLoad() {
