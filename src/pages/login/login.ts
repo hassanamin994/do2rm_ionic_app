@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
-import {  NavController, NavParams , Loading,LoadingController,MenuController	} from 'ionic-angular';
+import {  NavController, NavParams , Loading,LoadingController,MenuController  } from 'ionic-angular';
 import {HomePage} from '../home/home'
 import {MainService} from '../../providers/main'
 import { Storage } from '@ionic/storage';
 import {Observable} from 'rxjs/Rx';
+import { RegistrationPage } from '../registration/registration';
 
-
-
+/**
+ * Generated class for the LoginPage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
 
 @Component({
   selector:'page-login',
@@ -17,6 +22,10 @@ export class LoginPage {
 	loading: Loading;
 	loginCredentials = { _username: '', _password: '' };
 	error:any=null
+  user: any = {
+    email: "",
+    password: ""
+  };
 
   constructor(public storage: Storage,public MainSrv:MainService,public menuCtrl:MenuController,public nav: NavController,public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController) {
   	menuCtrl.enable(false)
@@ -32,14 +41,14 @@ export class LoginPage {
   public login() {
     this.showLoading()
     
-    
-  /* this.MainSrv.login(this.loginCredentials)
-    .catch((error:any)=>{this.loading.dismiss();this.error='*wrong username or password';return  Observable.throw(error.json().error || 'Server error')})
-    .subscribe((data)=>{
-    	this.loading.dismiss()
-    	this.storage.set('token','JWT '+data['token']);
-    	this.nav.setRoot(HomePage);
-    })*/
+  
+   // this.MainSrv.login(this.loginCredentials)
+   //  .catch((error:any)=>{this.loading.dismiss();this.error='*wrong username or password';return  Observable.throw(error.json().error || 'Server error')})
+   //  .subscribe((data)=>{
+   //  	this.loading.dismiss()
+   //  	this.storage.set('token','JWT '+data['token']);
+   //  	this.nav.setRoot(HomePage);
+   //  })
   }
 
   showLoading() {
@@ -50,12 +59,11 @@ export class LoginPage {
     this.loading.present();
   }
 
- 
 
-  private getAccessToken(){
-  	this.http.post(APIRoutes.get_login_route(),this.user).subscribe(res => {
-  		console.log(res);
-  	})
+
+  register(){
+    this.navCtrl.push(RegistrationPage)
   }
+ 
 
 }

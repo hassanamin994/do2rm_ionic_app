@@ -26,6 +26,10 @@ export class RegistrationPage {
     console.log('ionViewDidLoad RegistrationPage');
   }
 
+  register(){
+    console.log('register')
+  }
+
   registerFacebook(){
   	this.fb.login(['public_profile', 'user_friends', 'email'])
   	.then((res: FacebookLoginResponse) =>{

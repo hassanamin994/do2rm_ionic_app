@@ -9,10 +9,8 @@ import { ProductPage } from '../pages/product/product';
 import { UserPage } from '../pages/user/user';
 import { RegistrationPage } from '../pages/registration/registration';
 import { LoginPage } from '../pages/login/login';
-import { Storage } from '@ionic/storage';
-
-
-
+import { AuthenticationService } from '../authentication.service';
+import {Storage} from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,7 +18,7 @@ import { Storage } from '@ionic/storage';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = RegistrationPage;
 
   pages: Array<{title: string, component: any}>;
 

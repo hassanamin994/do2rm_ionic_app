@@ -2,13 +2,19 @@
 
 <ion-row class='search'>
 
-		<ion-item col-9> 
-			<ion-searchbar round (ionInput)="search($event)"></ion-searchbar>
-		</ion-item>
+	<ion-item col-8> 
+	    <ion-searchbar id="search" type="text" round [(ngModel)]="searchText" placeholder="Search" ></ion-searchbar>
+	</ion-item>
 
-		<ion-item col-3>
-			<button  ion-button icon-only class="camera" (click)="openBarcodeSearch()" round>
-				<ion-icon name="camera"></ion-icon>
-			</button>
-		</ion-item>
-	</ion-row>
+	<ion-item col-2>
+		<button  ion-button icon-only class="camera" (click)="openBarcodeSearch()" round>
+			<ion-icon name="camera"></ion-icon>
+		</button>
+	</ion-item>
+
+	<ion-item col-2>
+		<button  ion-button icon-only (mousedown)="startRecording()" (mouseup)="stopRecording()" >
+			<ion-icon name="mic"></ion-icon>
+		</button>
+	</ion-item>
+</ion-row>
