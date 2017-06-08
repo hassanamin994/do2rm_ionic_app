@@ -9,7 +9,8 @@ import { ProductPage } from '../pages/product/product';
 import { UserPage } from '../pages/user/user';
 import { RegistrationPage } from '../pages/registration/registration';
 import { LoginPage } from '../pages/login/login';
-
+import { AuthenticationService } from '../authentication.service';
+import {Storage} from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,11 +18,11 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = RegistrationPage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private storage: Storage, private authenticationService: AuthenticationService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -33,6 +34,18 @@ export class MyApp {
       { title: 'Product', component: ProductPage },
       { title: 'Profile', component: UserPage }
     ];
+    this.storage.keys().then(res => {
+      if(res.indexOf('access_token') == -1){
+        this.rootPage = RegistrationPage;
+        console.log(res.indexOf('access_token'))
+      }
+      else
+        this.rootPage = HomePage;
+    })
+    if(authenticationService.isLoggedIn()){
+      this.rootPage = HomePage;
+    }
+    console.log(authenticationService.isLoggedIn(), 'is logged in ')
 
   }
 

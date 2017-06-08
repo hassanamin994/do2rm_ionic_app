@@ -24,9 +24,13 @@
 			<ion-label color="primary" stacked>Password</ion-label>
 			<ion-input [(ngModel)]="newuser.password" type="password" placeholder="Password"></ion-input>
 		</ion-item>
-
+		<ion-item>
+			<ion-label color="primary" stacked>Confirm Password</ion-label>
+			<ion-input [(ngModel)]="newuser.password" type="password" placeholder="Confirm password"></ion-input>
+		</ion-item>
 
 		<ion-item>
+			<ion-label color="primary" stacked>Select Image</ion-label>
 			<ion-thumbnail>
 				<img id="profile_image" [src]="newuser.image">
 			</ion-thumbnail>
@@ -37,9 +41,11 @@
 			  <ion-icon name="camera"></ion-icon>
 			</button>
 		</ion-item>
-
+		<ion-item>
+			<button block (click)="register()" color="secondary" ion-button>Register</button>
+		</ion-item>
 	</ion-list>
-
-	<button (click)="registerFacebook()" ion-button>Regster using Facebook!</button>
+	<h2 text-center>OR</h2>
+	<button (click)="registerFacebook()" ion-button icon-left block> <ion-icon name="facebook"></ion-icon>Regster using Facebook!</button>
 
 </ion-content>

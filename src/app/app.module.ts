@@ -26,6 +26,7 @@ import { Facebook } from '@ionic-native/facebook';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import {IonicStorageModule} from '@ionic/storage';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
+import { AuthenticationService } from '../authentication.service';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
     Facebook,
     Camera,
     SpeechRecognition,
+    AuthenticationService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
