@@ -12,36 +12,77 @@ export class MainService {
   constructor(public http: Http,public storage: Storage) {
     console.log('Hello main Provider');
   }
+  async setheader(){
+    let token = await this.storage.get('token')
+    token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOnsiJG9pZCI6IjU5MzMxOGU5NzEyOTVhMDAwNDE3YzFiNyJ9fQ.8K8h8nNMr2wht1W-knJvm-ep-x489AA1qS6gzDm8lPE';
+    let headers = new Headers ({ 'Authorization': token });
+    headers.append( 'Content-Type', 'application/json' );
+    return headers;
+  }
   
   login(data){
     let headers=new Headers ({ 'Content-Type': 'application/json' });
     return this.http.post(this.domain+"/api/user_token",data,{headers:headers}).map(res=>res.json());
   }
+  
   register(data){
     let headers=new Headers ({ 'Content-Type': 'application/json' });
     return this.http.post(this.domain+"/api/users",data,{headers:headers}).map(res=>res.json());
 
   }
-  async sendcode(data){
+  
+  // add a product 
+  async addProduct(product){
     let headers=await this.setheader();
-    headers.append( 'Content-Type', 'application/json' );
-    return this.http.post(this.domain+"/api/students/"+data+"/attendances",'',{headers:headers}).map(res=>res.json());
-      
+    let data = {product: product};
+    return this.http.post(this.domain+"/api/products",data,{headers:headers}).map(res=>res.json());
   }
   
-  async getmaxgrade(){
+  // add a price to a product 
+  async addPrice(product_id, price){
     let headers=await this.setheader();
+    let newPrice = {location: price.store_name + " " + price.location, price: price.price}
+    return this.http.post(this.domain + "/api/products/" + product_id + "/prices" ,{price: newPrice},{headers:headers}).map(res=>res.json());
+
+  }
   
-    return this.http.get(this.domain+"/api/max/absence/points",{headers:headers})
-      .map(res=>res.json())
-      .catch((error:any)=>{console.log(error);return Observable.throw(error || 'Server error')});
+  // gets products
+  async getProducts(){
+    let headers=await this.setheader();
+    return this.http.get(this.domain + "/api/products/",{headers:headers}).map(res=>res.json());
+  }
+  
+  // gets a product 
+  async getProduct(id){
+    let headers=await this.setheader();
+    return this.http.get(this.domain + "/api/products/" + id, {headers:headers}).map(res=>res.json());
+  }
+
+  // confirms a price 
+  async confirmPrice(price_id){
+    let headers=await this.setheader();
+    return this.http.post(this.domain + "/api/prices/" + price_id + "/confirm" ,{},{headers:headers}).map(res=>res.json());
+
+  }
+
+  // disconfirms a price 
+  async disconfirmPrice(price_id){
+    let headers=await this.setheader();
+    return this.http.post(this.domain + "/api/prices/" + price_id + "/disconfirm" ,{},{headers:headers}).map(res=>res.json());
+
+  }
+
+  // adds a comment 
+  async addComment(product_id, comment){
+    let headers=await this.setheader();
+    return this.http.post(this.domain + "/api/products/" + product_id + "/disconfirm" ,{},{headers:headers}).map(res=>res.json());
+
   }
 
 
-  async setheader(){
-    let token = await this.storage.get('token')
-    return new Headers ({ 'Authorization': token });
-  }
+
+
+
 
 
 

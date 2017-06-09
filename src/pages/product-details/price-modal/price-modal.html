@@ -37,7 +37,7 @@
 	    <ion-label fixed>Location</ion-label>
 	    <ion-input type="text" [(ngModel)]="price.location"></ion-input>
 	  </ion-item>
-
+	  {{ error }}
 	</ion-list>
 	<div #map id="map" style="height:100%; width: 100%"></div>
 	<button ion-button (click)="addPrice()" block color="secondary"> Add</button>

@@ -1,6 +1,10 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AlertController, ViewController, NavController, NavParams } from 'ionic-angular';
 import { Http, Response } from '@angular/http';
+import { MainService } from '../../../providers/main';
+import {Observable} from 'rxjs/Rx';
+import { ProductPage } from '../../product/product';
+
 declare var google;
 
 /**
@@ -23,11 +27,12 @@ export class PriceModal {
     longitude: 0,
     latitude: 0
   }
+  error: string = "" ;
   marker: any = {}
 
-  constructor( private http:Http,  public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(private mainService: MainService, private http:Http,  public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
 
-
+    console.log(navParams.get('product_id'))
   }
 
   ionViewDidLoad() {
@@ -85,7 +90,6 @@ export class PriceModal {
     this.http.get(locationUrl).subscribe((res: Response)=>{
       let response = res.json() ;
       this.price.location = response.results[0].formatted_address;
-      console.log(response);
       this.price.longitude = longitude;
       this.price.latitude = latitude;
 
@@ -96,7 +100,23 @@ export class PriceModal {
   addPrice(){
 
     console.log(this.price)
+    this.mainService.addPrice(this.navParams.get('product_id'), this.price)
+    .then(obs => {
 
+      obs
+      .catch((error:any)=>{
+            console.log( 'fail', error);
+            this.error= error._body;
+            return  Observable.throw( 'An input is missing')}
+
+          )
+        .subscribe((data) => {
+          console.log('success', data);
+          this.dismiss();
+          this.navCtrl.push(ProductPage, this.navParams.get('product_id'));
+        })
+
+    })
   }
 
 }

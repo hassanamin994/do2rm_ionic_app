@@ -28,6 +28,7 @@ import {Camera, CameraOptions} from '@ionic-native/camera';
 import {IonicStorageModule} from '@ionic/storage';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { AuthenticationService } from '../authentication.service';
+import {MainService} from '../providers/main'
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { AuthenticationService } from '../authentication.service';
     Camera,
     SpeechRecognition,
     AuthenticationService,
+    MainService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
