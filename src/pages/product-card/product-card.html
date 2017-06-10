@@ -8,31 +8,32 @@
 <ion-card margin>
 
   <ion-thumbnail >
-   		<img (click)="openProductPage(product.id)" src="{{product.imageUrl}}" />
-   		<div class="card-price" *ngIf="home" ><div class="price">{{product.price}}$</div></div>
+   		<img (click)="openProductPage()" src="{{product.imageUrl}}" />
+   		<div class="card-price" *ngIf="home" ><div class="price">{{product.prices[0]?.price}}$</div></div>
   </ion-thumbnail>
 
   <ion-card-content>
   	<ion-row>
   	<div col-7 class="title">
   		<h1>{{product.name}}</h1>
+      <h3>{{product.prices[0]?.location}}</h3>
   	</div>
   	<div col-5>
-  		<ion-badge item-end class="confirm blueb">confirm : {{product.confirms}}</ion-badge>
-  		<ion-badge item-end class="fake">fake : {{product.fakes}}</ion-badge>
+  		<ion-badge item-end class="confirm blueb">confirm : {{product.prices[0]?.confirmation_ids.length}}</ion-badge>
+  		<ion-badge item-end class="fake">fake : {{product.prices[0]?.disconfirmation_ids.length}}</ion-badge>
   	</div>
   	</ion-row>
     
 	
   </ion-card-content>
   <hr>
-  <ion-row>
-  	<ion-col class="border" > 
-		<button ion-button icon-left clear small class="blue" (click)="doConfirm(product.id)" block>Confirm</button>
-	</ion-col>
-	<ion-col >
-   		<button ion-button icon-left clear small color="danger" (click)="doFake(product.id)" block>Fake</button>
-	</ion-col>
+  <ion-row *ngIf="product.prices.length > 0">
+    <ion-col class="border" > 
+      <button ion-button icon-left clear small class="blue" (click)="doConfirm()" block [disabled]="checkDidConfirm()">Confirm</button>
+    </ion-col>
+    <ion-col >
+    		<button ion-button icon-left clear small color="danger" (click)="doFake()" [disabled]="checkDidDisconfirm()" block>Fake</button>
+    </ion-col>
   </ion-row>
 
 </ion-card>

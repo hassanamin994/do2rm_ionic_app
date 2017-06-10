@@ -3,6 +3,7 @@ import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AlertController } from 'ionic-angular';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
+import { MainService } from '../../providers/main'  ;
 
 /**
  * Generated class for the Home page.
@@ -16,39 +17,22 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
 })
 export class HomePage {
   products: Array<any> = [];
-  constructor(private speechRecognition: SpeechRecognition, private alertCtrl: AlertController, public barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams, public menuCtrl:MenuController) {
+  constructor(private mainService: MainService, private speechRecognition: SpeechRecognition, private alertCtrl: AlertController, public barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams, public menuCtrl:MenuController) {
     menuCtrl.enable(true);  menuCtrl.enable(true);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Home');
-    this.products = [
-    {
-    	id:1,
-    	name:" Product 1 ",
-    	imageUrl:"https://dummyimage.com/600x400/000/fff",
-    	confirms: 15,
-    	fakes: 5,
-      price:140
-    },{
-    	id:2,
-    	name:" Product 2 ",
-    	imageUrl:"https://dummyimage.com/600x400/000/fff",
-    	confirms: 5,
-    	fakes: 9,
-      price:15
-    },{
-    	id:3,
-    	name:" Product 3 ",
-    	imageUrl:"https://dummyimage.com/600x400/000/fff",
-    	confirms: 10,
-    	fakes: 3,
-      price:500
-    },
-
-    ]
+    this.mainService.getProducts().then(obs =>{
+      obs
+      .subscribe(products => {
+        console.log(products);
+        this.products = products;
+      })
+    })
   }
 
+  
   
 
 }
