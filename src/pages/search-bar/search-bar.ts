@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AlertController } from 'ionic-angular';
@@ -16,7 +16,7 @@ import { SearchPage } from '../search/search';
 })
 export class SearchBarPage {
 	speechRecognitionSubscribtion: any ;
-	searchText: string = "" ;
+	@Input() searchText: string = "" ;
 	constructor(private speechRecognition: SpeechRecognition, private alertCtrl: AlertController, public barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams) {
 	}
 

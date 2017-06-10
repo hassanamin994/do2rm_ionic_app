@@ -64,7 +64,17 @@ export class MainService {
     return this.http.post(this.domain + "/api/prices/" + price_id + "/confirm" ,{},{headers:headers}).map(res=>res.json());
 
   }
-
+  async searchByWord(query){
+    // api/products/search/
+    let headers=await this.setheader();
+    return this.http.get(this.domain + "/api/products/search/" + query, {headers:headers}).map(res=>res.json());
+  }
+  async searchByBarCode(barcode){
+    // api/products/search/
+    let headers=await this.setheader();
+    return this.http.get(this.domain + "/api/products/searchqr/" + barcode, {headers:headers}).map(res=>res.json());
+  }
+  
   // disconfirms a price 
   async disconfirmPrice(price_id){
     let headers=await this.setheader();

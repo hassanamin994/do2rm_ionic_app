@@ -54,7 +54,25 @@ export class ProductCard {
   }
   doFake(){
     console.log(this.product.id.$oid);
-  	
+  	this.mainService.disconfirmPrice(this.product.prices[0]._id.$oid)
+    .then(obs => {
+
+      obs.catch(e => {
+        console.log('error confirming', e)
+        return  Observable.throw( 'error confirming') ;
+      })
+      .subscribe(res => {
+        if(res.error)
+           this.showAlert('Disconfirmation Failed', res.error);
+        else{
+          this.product.prices[0].disconfirmation_ids.push(this.user_id);
+          this.showAlert('Disconfirmed Successfull', 'Confirmation Successfully');
+        
+        }
+        console.log('confirmed ', res);
+      })
+
+    })
   }
 
   openProductPage(){
