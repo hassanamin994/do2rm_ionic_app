@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, Input ,Output, EventEmitter} from '@angular/core';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AlertController } from 'ionic-angular';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
@@ -17,7 +17,8 @@ import { SearchPage } from '../search/search';
 export class SearchBarPage {
 	speechRecognitionSubscribtion: any ;
 	@Input() searchText: string = "" ;
-	constructor(private speechRecognition: SpeechRecognition, private alertCtrl: AlertController, public barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams) {
+	@Output() search_emit: EventEmitter<any> = new EventEmitter<any>();
+	constructor(public viewCtrl: ViewController, private speechRecognition: SpeechRecognition, private alertCtrl: AlertController, public barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams) {
 	}
 
 	ionViewDidLoad() {
@@ -29,7 +30,10 @@ export class SearchBarPage {
 	     this.showAlert("Barcode data", JSON.stringify(barcodeData));
 	     if(!barcodeData.cancelled){
 	     	this.searchText = barcodeData.text;
-	     	this.navCtrl.push(SearchPage, {search: {by: "barcode", barcode: barcodeData.text}})
+	     	if (this.viewCtrl.name == 'HomePage')
+	     		this.navCtrl.push(SearchPage, {search: {by: "barcode", barcode: barcodeData.text}})
+	     	else
+	     		this.search_emit.emit({by: "barcode", barcode: barcodeData.text});	
 	     }
 	    }, (err) => {
 	        // An error occurred
@@ -66,7 +70,10 @@ export class SearchBarPage {
 	      .subscribe(
 	        (matches: Array<string>) => {
 			     	this.searchText = matches[0];
-			     	this.navCtrl.push(SearchPage, {search: {by: "voice", text: matches[0]}})
+			     	if (this.viewCtrl.name == 'HomePage')
+			     		this.navCtrl.push(SearchPage, {search: {by: "voice", text: matches[0]}})
+			     	else
+			     		this.search_emit.emit({by: "voice", text: matches[0]});
 	        },
 	        (onerror) => console.log('error:', onerror)
 	      )
@@ -104,7 +111,10 @@ export class SearchBarPage {
 	    alert.present();
 	  }
 	  search(){
-	    this.navCtrl.push(SearchPage, {search: {by: "voice", text: this.searchText }})
+	  	if (this.viewCtrl.name == 'HomePage')
+	    	this.navCtrl.push(SearchPage, {search: {by: "voice", text: this.searchText }})
+	    else
+	    	this.search_emit.emit({by: "voice", text: this.searchText });
 	  }
 
 

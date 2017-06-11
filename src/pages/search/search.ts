@@ -55,4 +55,16 @@ export class SearchPage {
 		  });
 		alert.present();
 	}
+  onSearch(search){
+    console.log(search['text'])
+    if(search['text'].length>0){
+      if(search['by'] == 'voice'){
+        this.searchByText(search['text']);
+        this.searchText = search['text']
+      }else{
+        this.searchByBarcode(search['barcode']);
+        this.searchText = "Barcode: " + search['barcode'];
+      }
+    }
+  }
 }
