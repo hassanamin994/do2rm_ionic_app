@@ -94,7 +94,7 @@ export class ProductCard {
       this.product.details.min_disconfirmations.splice(user_index_in_disconfirms, 1)
   }
   openProductPage(){
-    this.navCtrl.push(ProductPage, {id: this.product.id.$oid});
+    this.navCtrl.push(ProductPage, {product_id: this.product.id.$oid});
   }
   checkDidConfirm(){
     // get logged in user id and compare if his ids are in the confirmed array 

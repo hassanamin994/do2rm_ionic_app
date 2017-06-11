@@ -22,7 +22,7 @@ export class ProductDetails {
 
   addPrice(){
   	console.log('add price',this.product.id);
-	   let modal = this.modalCtrl.create(PriceModal, {product_id: this.product.id});
+	   let modal = this.modalCtrl.create(PriceModal, {product_id: this.product.id.$oid});
 	    modal.present();
   }
 
