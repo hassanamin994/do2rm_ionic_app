@@ -16,7 +16,7 @@ import {Observable} from 'rxjs/Rx';
   templateUrl: 'product-new.html',
 })
 export class ProductNewPage {
-  product: any = {name: "", barcode: ""} ;
+  product: any = {name: "", qr_code: ""} ;
   error: string = "" ;
   constructor(public mainSrv:MainService, private barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
   }

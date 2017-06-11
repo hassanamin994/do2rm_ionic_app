@@ -5,31 +5,31 @@
   Ionic pages and navigation.
 -->
 
-<ion-card margin>
+<ion-card *ngIf="product.details" margin>
 
   <ion-thumbnail >
    		<img (click)="openProductPage()" src="{{product.imageUrl}}" />
-   		<div class="card-price" *ngIf="home" ><div class="price">{{product.prices[0]?.price}}$</div></div>
+   		<div class="card-price" *ngIf="home" ><div class="price">{{product.details?.min}}$</div></div>
   </ion-thumbnail>
 
-  <ion-card-content>
+  <ion-card-content >
   	<ion-row>
   	<div col-7 class="title">
   		<h1>{{product.name}}</h1>
-      <h3>{{product.prices[0]?.location}}</h3>
+      <h3>{{product.details?.location}}</h3>
   	</div>
   	<div col-5>
-  		<ion-badge item-end class="confirm blueb">confirm : {{product.prices[0]?.confirmation_ids.length}}</ion-badge>
-  		<ion-badge item-end class="fake">fake : {{product.prices[0]?.disconfirmation_ids.length}}</ion-badge>
+  		<ion-badge item-end class="confirm blueb">confirm : {{product.details?.min_confirmations.length}}</ion-badge>
+  		<ion-badge item-end class="fake">fake : {{product.details?.min_disconfirmations.length}}</ion-badge>
   	</div>
   	</ion-row>
     
 	
   </ion-card-content>
   <hr>
-  <ion-row *ngIf="product.prices.length > 0">
+  <ion-row>
     <ion-col class="border" > 
-      <button ion-button icon-left clear small class="blue" (click)="doConfirm()" block [disabled]="checkDidConfirm()">Confirm</button>
+      <button ion-button icon-left clear small class="blue" (click)="doConfirm()" block >{{ checkDidConfirm() ? "Disconfirm": "Confirm"}}</button>
     </ion-col>
     <ion-col >
     		<button ion-button icon-left clear small color="danger" (click)="doFake()" [disabled]="checkDidDisconfirm()" block>Fake</button>
