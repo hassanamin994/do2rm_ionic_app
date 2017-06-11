@@ -23,10 +23,10 @@
 
     			 	<button ion-button block color="danger" (click)="fakePrice(price.id)" >Fake</button>
 
-    			 	<p>by {{price.username}}</p>
+    			 	<p>by {{price.user.username}}</p>
 
-			   		<div class="confirm">{{price.confirm}}: confirm</div>
-			   		<div class="fake">{{price.disconfirm}}: fake</div>
+			   		<div class="confirm">{{price.confirmation_ids.length}}: confirm</div>
+			   		<div class="fake">{{price.disconfirmation_ids.length}}: fake</div>
     			 </ion-col>
 
 	    		</ion-row>

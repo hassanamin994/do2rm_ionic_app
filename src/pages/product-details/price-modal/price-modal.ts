@@ -113,7 +113,7 @@ export class PriceModal {
         .subscribe((data) => {
           console.log('success', data);
           this.dismiss();
-          this.navCtrl.push(ProductPage, this.navParams.get('product_id'));
+          this.navCtrl.push(ProductPage, {product_id: this.navParams.get('product_id')});
         })
 
     })

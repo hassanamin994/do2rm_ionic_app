@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 
-<ion-card *ngIf="product.details" margin>
+<ion-card *ngIf=" product.details || product.prices " margin>
 
   <ion-thumbnail >
    		<img (click)="openProductPage()" src="{{product.imageUrl}}" />
@@ -32,7 +32,7 @@
       <button ion-button icon-left clear small class="blue" (click)="doConfirm()" block >{{ checkDidConfirm() ? "Disconfirm": "Confirm"}}</button>
     </ion-col>
     <ion-col >
-    		<button ion-button icon-left clear small color="danger" (click)="doFake()" [disabled]="checkDidDisconfirm()" block>Fake</button>
+    		<button ion-button icon-left clear small color="danger" (click)="doFake()" block>{{ checkDidDisconfirm() ? "Unfake": "Fake"}}</button>
     </ion-col>
   </ion-row>
 
