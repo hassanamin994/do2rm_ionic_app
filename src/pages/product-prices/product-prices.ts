@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+
 /**
  * Generated class for the ProductPrices page.
  *
@@ -13,16 +14,9 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ProductPrices {
   @Input() prices;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor( public navCtrl: NavController, public navParams: NavParams) {
 
   }
 
-  confirmPrice(id: any){
-  	console.log(id, 'confirm');
-  	
-  }
-  fakePrice(id: any){
-  	console.log(id,'fake');
-  	
-  }
+  
 }

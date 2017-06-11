@@ -11,6 +11,7 @@ import { ProductDetails } from '../pages/product-details/product-details';
 import { ProductPrices } from '../pages/product-prices/product-prices';
 import { ProductChart } from '../pages/product-chart/product-chart';
 import { ProductNewPage } from '../pages/product-new/product-new';
+import { ProductPriceCardPage } from '../pages/product-price-card/product-price-card';
 import { PriceModal } from '../pages/product-details/price-modal/price-modal';
 import { UserPage } from '../pages/user/user';
 import { RegistrationPage } from '../pages/registration/registration';
@@ -47,7 +48,8 @@ import {MainService} from '../providers/main'
     LoginPage,
     SearchPage,
     SearchBarPage,
-    ProductNewPage
+    ProductNewPage,
+    ProductPriceCardPage
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ import {MainService} from '../providers/main'
     LoginPage,
     SearchPage,
     SearchBarPage,
-    ProductNewPage
+    ProductNewPage,
+    ProductPriceCardPage
 
   ],
   providers: [
