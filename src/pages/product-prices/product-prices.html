@@ -8,29 +8,9 @@
 <ion-content no-padding>
     <ion-list>
 
+
     	<ion-item *ngFor="let price of prices" >
-    		<ion-grid>
-    			<ion-row  text-wrap>
-
-    			 <ion-col col-6>
-	    			<h1>{{price.price}} EGP </h1>
-	    			<p>At {{price.location}}</p>
-    			 </ion-col>
-
-    			 <ion-col col-6>
-
-    			 	<button ion-button block color="secondary" (click)="confirmPrice(price.id)" >Confirm</button>
-
-    			 	<button ion-button block color="danger" (click)="fakePrice(price.id)" >Fake</button>
-
-    			 	<p>by {{price.user.username}}</p>
-
-			   		<div class="confirm">{{price.confirmation_ids.length}}: confirm</div>
-			   		<div class="fake">{{price.disconfirmation_ids.length}}: fake</div>
-    			 </ion-col>
-
-	    		</ion-row>
-    		</ion-grid>
+    		<page-product-price-card [price]="price" ></page-product-price-card>
     	</ion-item>
       
     </ion-list>
