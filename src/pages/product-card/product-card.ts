@@ -29,22 +29,19 @@ export class ProductCard {
   }
   
   doConfirm(){
-  	// console.log(id);
-    console.log(this.product.id.$oid);
     this.mainService.confirmPrice(this.product.details.min_id.$oid)
     .then(obs => {
 
       obs.catch(e => {
-        console.log('error confirming', e)
         return  Observable.throw( 'error confirming') ;
       })
       .subscribe(res => {
         if(res.error)
            this.showAlert('Unsuccessful action!', res.error);
         else{
-          console.log(res)
           // this.product.prices[0].confirmation_ids.push(this.user_id);
           this.showAlert('Success', res.message);
+          this.toggleUserConfirm()
         }
       })
 
@@ -52,23 +49,11 @@ export class ProductCard {
   	
   }
 
-  refreshProductInfo(){
-    this.mainService.getProduct(this.product.id.$oid)
-    .then(obs => {
-      obs.subscribe(product => {
-        // this.product = product; 
-        console.log('new product', product);
-      })
-    })
-  }
-  
   doFake(){
-    console.log(this.product.id.$oid);
   	this.mainService.disconfirmPrice(this.product.details.min_id.$oid)
     .then(obs => {
 
       obs.catch(e => {
-        console.log('error confirming', e)
         return  Observable.throw( 'error confirming') ;
       })
       .subscribe(res => {
@@ -76,20 +61,42 @@ export class ProductCard {
            this.showAlert('Disconfirmation Failed', res.error);
         else{
           // this.product.prices[0].disconfirmation_ids.push(this.user_id);
-          this.showAlert('Disconfirmed Successfull', 'Confirmation Successfully');
+          this.showAlert('Disconfirmed Successfull', 'Disconfirmation Successfully');
+          this.toggleUserDisconfirm();  
         }
-        console.log('confirmed ', res);
       })
 
     })
   }
+  toggleUserConfirm(){
+    let user_index_in_confirms = this.product.details.min_confirmations.map(dis => dis.$oid ).indexOf(this.user_id);
+    if(user_index_in_confirms == -1){
+      this.product.details.min_confirmations.push({$oid: this.user_id})
+      let user_index_in_disconfirms = this.product.details.min_disconfirmations.map(dis => dis.$oid ).indexOf(this.user_id);
+      if(user_index_in_disconfirms != -1){
+        this.product.details.min_disconfirmations.splice(user_index_in_disconfirms, 1)
+      }
+    }
+    else
+      this.product.details.min_confirmations.splice(user_index_in_confirms, 1)
+  }
 
+  toggleUserDisconfirm(){
+    let user_index_in_disconfirms = this.product.details.min_disconfirmations.map(dis => dis.$oid ).indexOf(this.user_id);
+    if(user_index_in_disconfirms == -1){
+      this.product.details.min_disconfirmations.push({$oid: this.user_id})
+      let user_index_in_confirms = this.product.details.min_confirmations.map(dis => dis.$oid ).indexOf(this.user_id);
+      if(user_index_in_confirms != -1){
+        this.product.details.min_confirmations.splice(user_index_in_confirms, 1)
+      }
+    }
+    else
+      this.product.details.min_disconfirmations.splice(user_index_in_disconfirms, 1)
+  }
   openProductPage(){
     this.navCtrl.push(ProductPage, {id: this.product.id.$oid});
-    console.log('open product id',this.product.id.$oid);
   }
   checkDidConfirm(){
-    console.log(this.product.details.min_confirmations.map(obj => obj.$oid));
     // get logged in user id and compare if his ids are in the confirmed array 
     return this.product.details? this.product.details.min_confirmations.map(obj => obj.$oid).indexOf(this.user_id) != -1 : false ;
   }
