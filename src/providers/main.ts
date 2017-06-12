@@ -69,6 +69,20 @@ export class MainService {
     return this.http.post(this.domain + "/api/prices/" + price_id + "/confirm" ,{},{headers:headers}).map(res=>res.json());
 
   }
+   // gets products
+  async getComments(product_id){
+    let headers=await this.setheader();
+    return this.http.get(this.domain + "/api/products/" + product_id + "/comments/" ,{headers:headers}).map(res=>res.json());
+  }
+
+  //adds a comment
+  async addComment(product_id, comment){
+    let headers = await this.setheader();
+    let newComment = {body: comment}
+    return this.http.post(this.domain + "/api/products/" + product_id + "/comments/" ,{comment: newComment},{headers:headers}).map(res=>res.json());
+
+  }
+  
   async searchByWord(query){
     // api/products/search/
     let headers=await this.setheader();
@@ -87,12 +101,7 @@ export class MainService {
 
   }
 
-  // adds a comment 
-  async addComment(product_id, comment){
-    let headers=await this.setheader();
-    return this.http.post(this.domain + "/api/products/" + product_id + "/disconfirm" ,{},{headers:headers}).map(res=>res.json());
 
-  }
 
   async getUserid(){
     let user_id = await this.storage.get('user_id');

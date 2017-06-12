@@ -1,5 +1,6 @@
 import { Component, Input, Output , EventEmitter } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { MainService } from '../../providers/main';
 
 /**
  * Generated class for the ProductComments page.
@@ -14,10 +15,9 @@ import { NavController, NavParams } from 'ionic-angular';
 export class ProductComments {
   
   @Input() comments: any;
-  @Output() commentAdded = new EventEmitter<string>();
-  
+  @Input() product_id: any;
   newComment: string = "";
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private mainService: MainService, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -28,8 +28,24 @@ export class ProductComments {
   addComment(){
   	let comment = this.newComment.trim()
   	if(comment){
-	  	this.commentAdded.emit(comment);
+      this.mainService.addComment(this.product_id, comment)
+      .then(obs => {
+        obs.subscribe( res =>{
+          console.log(res);
+          this.refreshComments();
+        })
+      })
   	}
+  }
+
+  refreshComments(): void{
+    this.mainService.getComments(this.product_id)
+    .then(obs => {
+      obs.subscribe(comments => {
+        console.log(comments);
+        this.comments = comments;
+      })
+    })
   }
 
 }
