@@ -15,7 +15,11 @@ import { AlertController } from 'ionic-angular';
 })
 export class ProductPriceCardPage {
   @Input() price: any;
+  user_id = '';
   constructor(private alertCtrl: AlertController, private mainService: MainService, public navCtrl: NavController, public navParams: NavParams) {
+  mainService.getUserid().then(id => {
+      this.user_id = id;
+    })
   }
 
   ionViewDidLoad() {
@@ -60,6 +64,12 @@ export class ProductPriceCardPage {
         buttons: ['Dismiss']
         });
       alert.present();
+    }
+    checkDidConfirm(){
+      return this.price.confirmation_ids.map(id => id.$oid).indexOf(this.user_id) != -1 
+    }
+    checkDidDisconfirm(){
+      return this.price.disconfirmation_ids.map(id => id.$oid).indexOf(this.user_id) != -1 
     }
 
 }

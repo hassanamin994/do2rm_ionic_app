@@ -14,9 +14,9 @@
 
 	 <ion-col col-6>
 
-	 	<button ion-button block color="secondary" (click)="confirmPrice(price.id.$oid)" >Confirm</button>
+	 	<button ion-button block color="secondary" (click)="confirmPrice(price.id.$oid)" >{{ checkDidConfirm() ? "Disconfirm": "Confirm"}}</button>
 
-	 	<button ion-button block color="danger" (click)="fakePrice(price.id.$oid)" >Fake</button>
+	 	<button ion-button block color="danger" (click)="fakePrice(price.id.$oid)" >{{ checkDidDisconfirm() ? "Unfake": "Fake"}}</button>
 
 	 	<p>by {{price.user?.username}}</p>
 

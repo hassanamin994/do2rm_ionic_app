@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {  NavController, NavParams , Loading,LoadingController,MenuController  } from 'ionic-angular';
+import {  NavController, NavParams , Loading ,LoadingController,MenuController  } from 'ionic-angular';
 import {HomePage} from '../home/home'
 import {MainService} from '../../providers/main'
 import { Storage } from '@ionic/storage';

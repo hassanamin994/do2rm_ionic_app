@@ -13,6 +13,7 @@ import { ProductNewPage } from '../pages/product-new/product-new';
 import { AuthenticationService } from '../authentication.service';
 import {Storage} from '@ionic/storage';
 
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -32,7 +33,7 @@ export class MyApp {
       { title: 'Login', component: LoginPage },
       { title: 'Home', component: HomePage },
       { title: 'Add Product', component: ProductNewPage },
-      { title: 'Profile', component: UserPage }
+      { title: 'Profile', component: UserPage },
     ];
     storage.get('token').then((val)=>{if(val){this.rootPage=HomePage}else{this.rootPage=RegistrationPage}}).catch((err)=>{console.log(err)})
   }
