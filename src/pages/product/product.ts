@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-
+import { NavController, NavParams, Loading, LoadingController } from 'ionic-angular';
 import { Http,Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Rx';
@@ -18,17 +17,24 @@ import { MainService } from '../../providers/main';
 })
 export class ProductPage {
   product: any = {};
+  loading: Loading;
   icons: any = "overview" ;
-  constructor(private mainService: MainService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private mainService: MainService, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Product');
     // get product from api by id
     let id = this.navParams.get('product_id');
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+    });
+    loading.present();
     this.mainService.getProduct(id)
     .then( obs => {
       obs.subscribe(product => {
+        loading.dismiss()
         console.log('product details', product)
         this.product = product;
       })

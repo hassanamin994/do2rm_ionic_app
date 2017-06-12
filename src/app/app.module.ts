@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ProductPage } from '../pages/product/product';
+import { ChartPage } from '../pages/chart/chart';
 import { ProductCard } from '../pages/product-card/product-card';
 import { ProductComments } from '../pages/product-comments/product-comments';
 import { ProductDetails } from '../pages/product-details/product-details';
@@ -49,7 +50,8 @@ import {MainService} from '../providers/main'
     SearchPage,
     SearchBarPage,
     ProductNewPage,
-    ProductPriceCardPage
+    ProductPriceCardPage,
+    ChartPage
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,8 @@ import {MainService} from '../providers/main'
     SearchPage,
     SearchBarPage,
     ProductNewPage,
-    ProductPriceCardPage
+    ProductPriceCardPage,
+    ChartPage
 
   ],
   providers: [

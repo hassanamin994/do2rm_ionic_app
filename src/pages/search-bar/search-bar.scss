@@ -12,8 +12,9 @@ page-search-bar {
 	.camera{
      	height: 30px !important;
      	width: 30px !important;
-     	background-color: #B9E838;
+     	background-color: orange;
      	margin:0px !important;
+          box-shadow: none;
      }
      .item-inner{
      	border: none !important;
@@ -21,4 +22,13 @@ page-search-bar {
      ion-item{
      	padding: 0px !important;	
      }
+     icon_item{
+          height: 35px !important
+     }
+     ion-label{
+          margin: 0px !important;
+          width: 30px !important
+
+     }
+
 }
