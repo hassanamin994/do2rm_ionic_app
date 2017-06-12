@@ -41,7 +41,7 @@ export class MainService {
   // add a price to a product 
   async addPrice(product_id, price){
     let headers=await this.setheader();
-    let newPrice = {location: price.store_name + " " + price.location, price: price.price}
+    let newPrice = {location: price.store_name + " " + price.location, price: price.price, image: price.image}
     return this.http.post(this.domain + "/api/products/" + product_id + "/prices" ,{price: newPrice},{headers:headers}).map(res=>res.json());
 
   }

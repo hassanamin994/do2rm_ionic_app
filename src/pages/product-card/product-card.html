@@ -8,7 +8,7 @@
 <ion-card *ngIf=" product.details || product.prices " margin>
 
   <ion-thumbnail >
-   		<img (click)="openProductPage()" src="https://dummyimage.com/600x400/000/fff&text=Product" />
+   		<img (click)="openProductPage()" [src]=" product.details?.min_pic.url? 'https://do2rom.herokuapp.com' + product.details?.min_pic.url : 'https://dummyimage.com/600x400/000/fff&text='+product.name "  />
    		<div class="card-price" *ngIf="home" ><div class="price">{{product.details?.min}}$</div></div>
   </ion-thumbnail>
 
@@ -16,7 +16,8 @@
   	<ion-row>
   	<div col-7 class="title">
   		<h1>{{product.name}}</h1>
-      <h3>{{product.details?.location}}</h3>
+      <h2>by: {{ product.details?.min_username }}</h2>
+      <h3>{{product.details?.min_location}}</h3>
   	</div>
   	<div col-5>
   		<ion-badge item-end class="confirm blueb">confirm : {{product.details?.min_confirmations.length}}</ion-badge>

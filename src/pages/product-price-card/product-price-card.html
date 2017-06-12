@@ -9,7 +9,11 @@
 
 	 <ion-col col-6>
 		<h1>{{price.price}} EGP </h1>
-		<p>At {{price.location}}</p>
+		<p>At {{price.location}}</p><br>
+		  <ion-thumbnail >
+	   		<img [src]=" price.image.url? 'https://do2rom.herokuapp.com' + price.image.url : 'https://dummyimage.com/600x400/000/fff&text=Price' " />
+	   		<div class="card-price" *ngIf="home" ><div class="price">{{product.details?.min}}$</div></div>
+	  </ion-thumbnail>
 	 </ion-col>
 
 	 <ion-col col-6>

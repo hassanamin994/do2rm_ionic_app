@@ -5,6 +5,7 @@ import { MainService } from '../../../providers/main';
 import {Observable} from 'rxjs/Rx';
 import { ProductPage } from '../../product/product';
 import {Camera, CameraOptions} from '@ionic-native/camera';
+import { LoadingController } from 'ionic-angular';
 
 declare var google;
 
@@ -31,8 +32,8 @@ export class PriceModal {
   }
   error: string = "" ;
   marker: any = {}
-
-  constructor(private camera: Camera, private mainService: MainService, private http:Http,  public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  loading: any;
+  constructor(private loadingCtrl: LoadingController, private camera: Camera, private mainService: MainService, private http:Http,  public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
 
     console.log(navParams.get('product_id'))
   }
@@ -104,16 +105,22 @@ export class PriceModal {
     console.log(this.price)
     this.mainService.addPrice(this.navParams.get('product_id'), this.price)
     .then(obs => {
-
+      this.loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+      this.loading.present();
       obs
       .catch((error:any)=>{
             console.log( 'fail', error);
-            this.error= error._body;
+            this.error= JSON.stringify(error);
+            // this.showAlert('image base64', JSON.stringify(error));
+            this.loading.dismiss();
             return  Observable.throw( 'An input is missing')}
-
           )
         .subscribe((data) => {
           console.log('success', data);
+          this.loading.dismiss();
+          this.showAlert('Price Added','Price added successfully!');
           this.dismiss();
           this.navCtrl.push(ProductPage, {product_id: this.navParams.get('product_id')});
         })
@@ -169,7 +176,7 @@ export class PriceModal {
       // If it's base64:
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.price.image = base64Image;
-      this.showAlert('image base64', base64Image);
+      // this.showAlert('image base64', base64Image);
     }, (err) => {
     // Handle error
     });
