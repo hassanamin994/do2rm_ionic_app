@@ -48,7 +48,7 @@ export class ProductPriceCardPage {
     console.log('old price', this.price);
     this.mainService.getPrice(this.price.id.$oid).then( obs => {
       obs.subscribe(price => {
-        this.price = price.price;
+        this.price = price;
         console.log('new price', this.price);
       })
     });
