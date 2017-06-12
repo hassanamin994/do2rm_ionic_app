@@ -17,9 +17,11 @@ import { AlertController } from 'ionic-angular';
 export class ProductCard {
   @Input() product: any;
   @Input() home: any;
-  user_id = "593b8635a0444f00042950b0";
+  user_id = "";
   constructor(private alertCtrl: AlertController , private mainService: MainService, public navCtrl: NavController, public navParams: NavParams) {
-    
+    mainService.getUserid().then(id => {
+      this.user_id = id;
+    })
   }
 
   ionViewDidLoad() {

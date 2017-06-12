@@ -57,6 +57,11 @@ export class MainService {
     let headers=await this.setheader();
     return this.http.get(this.domain + "/api/products/" + id, {headers:headers}).map(res=>res.json());
   }
+  // gets a product 
+  async getPrice(id){
+    let headers=await this.setheader();
+    return this.http.get(this.domain + "/api/prices/" + id, {headers:headers}).map(res=>res.json());
+  }
 
   // confirms a price 
   async confirmPrice(price_id){
@@ -89,6 +94,11 @@ export class MainService {
 
   }
 
+  async getUserid(){
+    let user_id = await this.storage.get('user_id');
+    user_id = "593b8635a0444f00042950b0";
+    return user_id
+  }
 
 
 

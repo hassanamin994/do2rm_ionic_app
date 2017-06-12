@@ -18,7 +18,7 @@
 
 	 	<button ion-button block color="danger" (click)="fakePrice(price.id.$oid)" >Fake</button>
 
-	 	<p>by {{price.user.username}}</p>
+	 	<p>by {{price.user?.username}}</p>
 
    		<div class="confirm">{{price.confirmation_ids.length}}: confirm</div>
    		<div class="fake">{{price.disconfirmation_ids.length}}: fake</div>

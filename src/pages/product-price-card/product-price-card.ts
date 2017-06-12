@@ -22,22 +22,36 @@ export class ProductPriceCardPage {
     console.log('ionViewDidLoad ProductPriceCardPage');
   }
   confirmPrice(id: any){
-  	console.log(id, 'confirm');
+
   	this.mainService.confirmPrice(id)
     .then( obs => {
       obs.subscribe( res => {
         console.log(res);
-        this.showAlert('Confirmation', res.message);
+        this.refreshPrice();
+        this.showAlert('Confirmation', res.message? res.message : res.error);
       })
     })
   }
   fakePrice(id: any){
   	console.log(id,'fake');
-  	
+  	this.mainService.disconfirmPrice(id)
+    .then( obs => {
+      obs.subscribe( res => {
+        console.log(res);
+        this.refreshPrice();
+        this.showAlert('Disconfirm', res.message? res.message : res.error);
+      })
+    })
   }
 
-  refreshPrices(){
-
+  refreshPrice(){
+    console.log('old price', this.price);
+    this.mainService.getPrice(this.price.id.$oid).then( obs => {
+      obs.subscribe(price => {
+        this.price = price.price;
+        console.log('new price', this.price);
+      })
+    });
   }
   showAlert(heading, body){
       let alert = this.alertCtrl.create({
