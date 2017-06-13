@@ -25,8 +25,19 @@ export class ChartPage {
     	console.log('chang',changes)
     	if(changes.prices.currentValue != undefined){
     		console.log(this.prices)
-	    	var labels = this.prices.map( price => price.created_at.substr(0,10))
-	    	var data = this.prices.map( price => price.price)
+    		let prices = this.prices.reduce(function(rv, price) {
+						    (rv[price.created_at.substr(0,10)] = rv[price.created_at.substr(0,10)] || []).push(price.price);
+						    return rv;
+						  }, {});
+    		let labels = []
+    		let data = []
+    		for (var key in prices) {
+			    labels.push(key);
+			    data.push((prices[key].reduce((pv, cv) => pv+cv, 0) / prices[key].length).toFixed(1))
+			};
+
+	    	Chart.defaults.global.maintainAspectRatio = false;
+        	this.lineCanvas.nativeElement.height = 200;
 	    	this.lineChart = new Chart(this.lineCanvas.nativeElement, {
 	            type: 'line',
 	            data: {
@@ -60,6 +71,7 @@ export class ChartPage {
 	            }
  
         	});
+
     	
 	 
 	    }

@@ -112,7 +112,7 @@ export class PriceModal {
       obs
       .catch((error:any)=>{
             console.log( 'fail', error);
-            this.error= JSON.stringify(error);
+            this.error= error._body;;
             // this.showAlert('image base64', JSON.stringify(error));
             this.loading.dismiss();
             return  Observable.throw( 'An input is missing')}
@@ -121,8 +121,8 @@ export class PriceModal {
           console.log('success', data);
           this.loading.dismiss();
           this.showAlert('Price Added','Price added successfully!');
-          this.dismiss();
-          this.navCtrl.push(ProductPage, {product_id: this.navParams.get('product_id')});
+          //this.viewCtrl.dismiss();
+          this.navCtrl.setRoot(ProductPage, {product_id: this.navParams.get('product_id')});
         })
 
     })

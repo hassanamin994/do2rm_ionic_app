@@ -15,6 +15,7 @@ import { AuthenticationService } from '../authentication.service';
 import {Storage} from '@ionic/storage';
 
 
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -23,8 +24,9 @@ export class MyApp {
 
   rootPage: any = RegistrationPage;
 
-  pages: Array<{title: string, component: any}>;
   loggedIn: boolean = false;
+  pages: Array<{title: string, component: any}>;
+
   constructor(public storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
@@ -54,6 +56,8 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    this.statusBar.backgroundColorByHexString('#00b4c2');
+
   }
 
   openPage(page) {

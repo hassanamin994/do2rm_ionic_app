@@ -26,15 +26,17 @@
 
 	   </ion-row>
 	</ion-card>
+	<hr>
 	<ion-row>
 		<ion-grid>
 			<ion-row>
-				<ion-textarea [(ngModel)]="newComment" col-12 style="width:100%;border:1px solid black;">
+				<ion-textarea [(ngModel)]="newComment" col-12 class="comment" >
 
 				</ion-textarea><br>
 			</ion-row>
+			
 			<ion-row>
-				<button ion-button (click)="addComment()"> Add Comment</button>
+				<button ion-button (click)="addComment()" class="blueb"> Add Comment</button>
 			</ion-row>
 		</ion-grid>
 	</ion-row>

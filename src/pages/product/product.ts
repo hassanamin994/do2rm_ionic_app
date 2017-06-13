@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Loading, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, Loading, LoadingController, MenuController } from 'ionic-angular';
 import { Http,Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Rx';
@@ -19,7 +19,8 @@ export class ProductPage {
   product: any = {};
   loading: Loading;
   icons: any = "overview" ;
-  constructor(private mainService: MainService, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
+  constructor(private menuCtrl: MenuController, private mainService: MainService, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
+      menuCtrl.enable(true);  
   }
 
   ionViewDidLoad() {
