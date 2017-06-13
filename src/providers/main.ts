@@ -108,6 +108,10 @@ export class MainService {
     user_id = "593b8635a0444f00042950b0";
     return user_id
   }
+  async getUserInfo(){
+    let headers=await this.setheader();
+    return this.http.get(this.domain + "/api/my_info/" , {headers:headers}).map(res=>res.json());
+  }
 
 
 

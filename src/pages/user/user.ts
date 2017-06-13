@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { MainService } from '../../providers/main';
 
 /**
  * Generated class for the UserPage page.
@@ -20,11 +21,18 @@ export class UserPage {
     points: 100,
     badges:[{name: 'badge 1', imageUrl: 'https://dummyimage.com/600x400/000/fff'},{name: 'badge 1', imageUrl: 'https://dummyimage.com/600x400/000/fff'}]
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private mainService: MainService, public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserPage');
+    this.mainService.getUserInfo().then(obs => {
+      obs.subscribe(user => {
+        console.log('user data ', user)
+        this.user = user; 
+      })
+    })
   }
 
 
