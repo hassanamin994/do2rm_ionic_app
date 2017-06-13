@@ -6,8 +6,8 @@
 -->
 <ion-card *ngIf=" product.details || product.prices " margin>
 
-  <ion-thumbnail >
-   		<img (click)="openProductPage()" [src]=" product.details?.min_pic.url? 'https://do2rom.herokuapp.com' + product.details?.min_pic.url : 'https://fakeimg.pl/600x400/?text='+product.name "  />
+  <ion-thumbnail (click)="openProductPage()" >
+   		<img  [src]=" product.details.min_pic.url? 'https://do2rom.herokuapp.com' + product.details.min_pic.url : 'https://fakeimg.pl/600x400/?text='+product.name "  />
    		<div class="card-price" *ngIf="home" ><div class="price">{{product.details?.min}}$</div></div>
   </ion-thumbnail>
 
