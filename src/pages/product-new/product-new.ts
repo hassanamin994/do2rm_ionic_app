@@ -16,8 +16,12 @@ import {Observable} from 'rxjs/Rx';
   templateUrl: 'product-new.html',
 })
 export class ProductNewPage {
-  product: any = {name: "", qr_code: ""} ;
+  product: any = {} ;
   error: string = "" ;
+  productsFull = {}; 
+  products = []; 
+  
+
   constructor(public mainSrv:MainService, private barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
   }
 
@@ -25,25 +29,57 @@ export class ProductNewPage {
     console.log('ionViewDidLoad ProductNewPage');
   }
 
+   searchProduct(searchbar) {
+      var name = searchbar.target.value;
+      if (name.trim() == '') {
+          this.products=[]
+      }
+      else{
+        this.mainSrv.searchByWord(name).then( obs =>{
+        obs.subscribe(products => {
+            this.productsFull = {}
+            products.forEach((i)=>{
+                          this.productsFull[i.name]=i.id.$oid
+                        })
+            this.products = products.map(product => product['name']);
+            
+          })
+         }
+        );
+      }
+  }
+  selectItem(product){
+    this.product.name = product
+    this.products = []
+  }
+
   addProduct(){
   	console.log(this.product.name);
   	// add product to api and get its id 
-    if(this.product.name.trim()){
-      this.mainSrv.addProduct(this.product)
-      .then((obs)=>{
-        obs
-        .catch((error:any)=>{
-            console.log( error);
-            this.error= error._body;
-            return  Observable.throw( 'Duplicte product name error')}
 
-          )
-        .subscribe((data) => {
-          let modal = this.modalCtrl.create(PriceModal, {product_id: data.id.$oid});
-          modal.present();
-          console.log(data);
+    if(this.product.name.trim()){
+      alert(JSON.stringify (this.productsFull))
+      if(this.productsFull.hasOwnProperty(this.product.name)){
+        let modal = this.modalCtrl.create(PriceModal, {product_id: this.productsFull[this.product.name]});
+            modal.present();
+      }
+      else{
+        this.mainSrv.addProduct(this.product)
+        .then((obs)=>{
+          obs
+          .catch((error:any)=>{
+              console.log( error);
+              this.error= error._body;
+              return  Observable.throw( 'Duplicte product name error')}
+
+            )
+          .subscribe((data) => {
+            let modal = this.modalCtrl.create(PriceModal, {product_id: data.id.$oid});
+            modal.present();
+            console.log(data);
+          })
         })
-      })
+      }
     }
 
   }

@@ -29,7 +29,7 @@
 	  </ion-item>
 
 	  <ion-item>
-        <button round (click)="selectImage()" class="camera" ion-button icon-only>
+        <button round (click)="selectImage()" class="camera blueb" ion-button icon-only>
 			  <ion-icon name="camera" ></ion-icon>
 		</button>
 		<ion-thumbnail *ngIf="price.image">
@@ -49,6 +49,6 @@
 	  {{ error }}
 	</ion-list>
 	<div #map id="map" style="height:100%; width: 100%"></div>
-	<button ion-button (click)="addPrice()" block color="secondary"> Add</button>
+	<button ion-button (click)="addPrice()" block class="blueb"> Add</button>
 
 </ion-content>

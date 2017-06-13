@@ -14,6 +14,7 @@ import { AuthenticationService } from '../authentication.service';
 import {Storage} from '@ionic/storage';
 
 
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -24,7 +25,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor( public storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -45,6 +46,8 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    this.statusBar.backgroundColorByHexString('#00b4c2');
+
   }
 
   openPage(page) {
