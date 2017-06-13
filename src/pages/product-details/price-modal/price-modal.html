@@ -29,15 +29,6 @@
 	  </ion-item>
 
 	  <ion-item>
-        <button round (click)="selectImage()" class="camera blueb" ion-button icon-only>
-			  <ion-icon name="camera" ></ion-icon>
-		</button>
-		<ion-thumbnail *ngIf="price.image">
-			<img id="profile_image" [src]="price.image">
-		</ion-thumbnail>
-	</ion-item>
-
-	  <ion-item>
 	    <ion-label fixed>Store name:</ion-label>
 	    <ion-input type="text" [(ngModel)]="price.store_name"></ion-input>
 	  </ion-item>
