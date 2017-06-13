@@ -4,13 +4,21 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
 
 <ion-content nopadding>
 	<ion-grid>
 
 		<ion-row>
 			<ion-item col-12>
-				<img [src]="user.imageUrl">
+				<img [src]=" user.avatar?.url? user.avatar?.url : 'https://dummyimage.com/600x400/000/fff/User' ">
 			</ion-item>
 		</ion-row>
 
