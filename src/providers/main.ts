@@ -3,22 +3,32 @@ import { Http,Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Rx';
 import { Storage } from '@ionic/storage';
-
+import { AlertController } from 'ionic-angular';
 
 @Injectable()
 export class MainService {
   headers:Headers
   domain='https://do2rom.herokuapp.com'
-  constructor(public http: Http,public storage: Storage) {
+  constructor(private alertCtrl: AlertController, public http: Http,public storage: Storage) {
     console.log('Hello main Provider');
   }
   async setheader(){
+
     let token = await this.storage.get('token')
-    token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOnsiJG9pZCI6IjU5M2I4NjM1YTA0NDRmMDAwNDI5NTBiMCJ9fQ.ZAJW-BtY8Qm_OeLenGWdQbep78-5OpA6OW6sD3iY2KY';
+    // token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOnsiJG9pZCI6IjU5M2I4NjM1YTA0NDRmMDAwNDI5NTBiMCJ9fQ.ZAJW-BtY8Qm_OeLenGWdQbep78-5OpA6OW6sD3iY2KY';
     let headers = new Headers ({ 'Authorization': token });
     headers.append( 'Content-Type', 'application/json' );
     return headers;
   }
+
+  showAlert(heading, body){
+      let alert = this.alertCtrl.create({
+        title: heading,
+        subTitle: body ,
+        buttons: ['Dismiss']
+        });
+      alert.present();
+    }
   
   login(data){
     let headers=new Headers ({ 'Content-Type': 'application/json' });
@@ -30,7 +40,10 @@ export class MainService {
     return this.http.post(this.domain+"/api/users",data,{headers:headers}).map(res=>res.json());
 
   }
-  
+  async logout(){
+    await this.storage.remove('token')
+    await this.storage.remove('user_id');
+  }
   // add a product 
   async addProduct(product){
     let headers=await this.setheader();
@@ -105,7 +118,7 @@ export class MainService {
 
   async getUserid(){
     let user_id = await this.storage.get('user_id');
-    user_id = "593b8635a0444f00042950b0";
+    // user_id = "593b8635a0444f00042950b0";
     return user_id
   }
   async getUserInfo(){

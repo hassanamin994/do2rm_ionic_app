@@ -9,6 +9,7 @@ import { ProductPage } from '../pages/product/product';
 import { UserPage } from '../pages/user/user';
 import { RegistrationPage } from '../pages/registration/registration';
 import { LoginPage } from '../pages/login/login';
+import { LogoutPage } from '../pages/logout/logout';
 import { ProductNewPage } from '../pages/product-new/product-new';
 import { AuthenticationService } from '../authentication.service';
 import {Storage} from '@ionic/storage';
@@ -23,19 +24,27 @@ export class MyApp {
   rootPage: any = RegistrationPage;
 
   pages: Array<{title: string, component: any}>;
-
+  loggedIn: boolean = false;
   constructor(public storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Register', component: RegistrationPage },
-      { title: 'Login', component: LoginPage },
       { title: 'Home', component: HomePage },
       { title: 'Add Product', component: ProductNewPage },
       { title: 'Profile', component: UserPage },
+      { title: 'Logout', component: LogoutPage },
     ];
-    storage.get('token').then((val)=>{if(val){this.rootPage=HomePage}else{this.rootPage=RegistrationPage}}).catch((err)=>{console.log(err)})
+    storage.get('token').then((val)=>{
+      if(val){
+        this.rootPage=HomePage
+        this.loggedIn = true;
+      }else{
+        this.rootPage=RegistrationPage
+        this.loggedIn = false;
+      }
+
+    }).catch((err)=>{console.log(err)})
   }
 
   initializeApp() {
