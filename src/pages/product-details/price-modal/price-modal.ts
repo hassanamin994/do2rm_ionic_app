@@ -4,7 +4,6 @@ import { Http, Response } from '@angular/http';
 import { MainService } from '../../../providers/main';
 import {Observable} from 'rxjs/Rx';
 import { ProductPage } from '../../product/product';
-import {Camera, CameraOptions} from '@ionic-native/camera';
 import { LoadingController } from 'ionic-angular';
 
 declare var google;
@@ -26,14 +25,13 @@ export class PriceModal {
     price: 0,
     location: "",
     store_name: "",
-    image: "",
     longitude: 0,
     latitude: 0
   }
   error: string = "" ;
   marker: any = {}
   loading: any;
-  constructor(private loadingCtrl: LoadingController, private camera: Camera, private mainService: MainService, private http:Http,  public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(private loadingCtrl: LoadingController, private mainService: MainService, private http: Http,  public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
 
     console.log(navParams.get('product_id'))
   }
@@ -112,7 +110,7 @@ export class PriceModal {
       obs
       .catch((error:any)=>{
             console.log( 'fail', error);
-            this.error= error._body;;
+            this.error=  error._body;
             // this.showAlert('image base64', JSON.stringify(error));
             this.loading.dismiss();
             return  Observable.throw( 'An input is missing')}
@@ -127,61 +125,9 @@ export class PriceModal {
 
     })
   }
-  selectImage(){
-    console.log('selecting image');
-    let alert = this.alertCtrl.create();
-    alert.setTitle('Import Image');
-    alert.addInput({
-      type: 'radio',
-      label: 'Gallery',
-      value: 'gallary',
-      checked: true
-    });
-    alert.addInput({
-      type: 'radio',
-      label: 'Camera',
-      value: 'camera',
-      checked: false
-    });
+  
 
-    alert.addButton({
-      text: 'OK',
-      handler: data => {
-        this.openImageSelector(data);
-        console.log(data);
-      }
-    });
-    alert.present();
-    
-  }
-
-  openImageSelector(choice){
-    if(choice === 'camera'){
-      var sourceType = this.camera.PictureSourceType.CAMERA ;
-      console.log('camer chaoice ')
-    }
-    else{
-      console.log('gallary  ')
-      var sourceType = this.camera.PictureSourceType.SAVEDPHOTOALBUM;
-    }
-
-    const options: CameraOptions = {
-      quality: 100,
-      sourceType: sourceType,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64:
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.price.image = base64Image;
-      // this.showAlert('image base64', base64Image);
-    }, (err) => {
-    // Handle error
-    });
-
-  }
+  
 
   showAlert(heading, body){
     let alert = this.alertCtrl.create({

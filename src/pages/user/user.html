@@ -17,7 +17,7 @@
 	<ion-grid>
 
 		<ion-row>
-			<ion-item col-12>
+			<ion-item col-12 >
 				<img [src]=" user.avatar?.url? user.avatar?.url : 'https://dummyimage.com/600x400/000/fff/User' ">
 			</ion-item>
 		</ion-row>
@@ -32,8 +32,8 @@
 			<ion-item col-4>
 				<h3>Badges: </h3>
 			</ion-item>
-			<ion-item col-8>
-				<img style="width:50px; margin-right:10px" [src]="badge.imageUrl" *ngFor="let badge of user.badges" alt="">
+			<ion-item col-8  *ngIf='badge' >
+				<img style="width:50px; margin-right:10px" [src]="'../../assets/badges/'+badge" alt="">
 			</ion-item>
 		</ion-row>
 

@@ -10,19 +10,17 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Bkam</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 
 <ion-content >
-
-
-	
-	
-	<page-search-bar>
-	</page-search-bar>
+	<page-search-bar></page-search-bar>
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  	</ion-refresher>
 	<ion-row>
 		<ion-row *ngFor="let product of products">
 			<page-product-card [product]="product" [home]="true" ></page-product-card>

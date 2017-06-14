@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { ModalController, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { PriceModal } from '../product-details/price-modal/price-modal'
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import {MainService} from '../../providers/main'
 import {Observable} from 'rxjs/Rx';
+import {Camera, CameraOptions} from '@ionic-native/camera';
+
 
 /**
  * Generated class for the ProductNewPage page.
@@ -22,7 +24,7 @@ export class ProductNewPage {
   products = []; 
   
 
-  constructor(public mainSrv:MainService, private barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(private loadingCtrl: LoadingController, public mainSrv:MainService,  public alertCtrl: AlertController, private camera: Camera, private barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -35,13 +37,19 @@ export class ProductNewPage {
           this.products=[]
       }
       else{
+        
         this.mainSrv.searchByWord(name).then( obs =>{
         obs.subscribe(products => {
             this.productsFull = {}
-            products.forEach((i)=>{
-                          this.productsFull[i.name]=i.id.$oid
-                        })
-            this.products = products.map(product => product['name']);
+            this.products=[]
+            if(products.length > 0){
+              products.forEach((i)=>{
+                            this.productsFull[i.name]=i.id.$oid
+                          })
+              this.products = products.map(product => product['name']);
+            }
+            
+
             
           })
          }
@@ -53,17 +61,79 @@ export class ProductNewPage {
     this.products = []
   }
 
+  selectImage(){
+      console.log('selecting image');
+      let alert = this.alertCtrl.create();
+      alert.setTitle('Import Image');
+      alert.addInput({
+        type: 'radio',
+        label: 'Gallery',
+        value: 'gallary',
+        checked: true
+      });
+      alert.addInput({
+        type: 'radio',
+        label: 'Camera',
+        value: 'camera',
+        checked: false
+      });
+
+      alert.addButton({
+        text: 'OK',
+        handler: data => {
+          this.openImageSelector(data);
+          console.log(data);
+        }
+      });
+      alert.present();
+    
+  }
+
+  openImageSelector(choice){
+    if(choice === 'camera'){
+      var sourceType = this.camera.PictureSourceType.CAMERA ;
+      console.log('camer chaoice ')
+    }
+    else{
+      console.log('gallary  ')
+      var sourceType = this.camera.PictureSourceType.SAVEDPHOTOALBUM;
+    }
+
+    const options: CameraOptions = {
+      quality: 100,
+      sourceType: sourceType,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      mediaType: this.camera.MediaType.PICTURE,
+      targetWidth: 300,
+      targetHeight: 300
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.product.image = base64Image;
+      // this.showAlert('image base64', base64Image);
+    }, (err) => {
+    // Handle error
+    });
+
+  }
+
   addProduct(){
   	console.log(this.product.name);
   	// add product to api and get its id 
 
     if(this.product.name.trim()){
-      alert(JSON.stringify (this.productsFull))
       if(this.productsFull.hasOwnProperty(this.product.name)){
         let modal = this.modalCtrl.create(PriceModal, {product_id: this.productsFull[this.product.name]});
             modal.present();
       }
       else{
+        let loading = this.loadingCtrl.create({
+          content: 'Please wait...'
+        });
+        loading.present();
         this.mainSrv.addProduct(this.product)
         .then((obs)=>{
           obs
@@ -74,6 +144,7 @@ export class ProductNewPage {
 
             )
           .subscribe((data) => {
+            loading.dismiss();
             let modal = this.modalCtrl.create(PriceModal, {product_id: data.id.$oid});
             modal.present();
             console.log(data);

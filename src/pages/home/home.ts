@@ -17,7 +17,7 @@ import { MainService } from '../../providers/main'  ;
 })
 export class HomePage {
   products: Array<any> = [];
-  constructor(private mainService: MainService, private speechRecognition: SpeechRecognition, private alertCtrl: AlertController, public barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams, public menuCtrl:MenuController, public loadingCtrl: LoadingController) {
+  constructor(private mainService: MainService, private speechRecognition: SpeechRecognition, private Ctrl: AlertController, public barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams, public menuCtrl:MenuController, public loadingCtrl: LoadingController) {
     menuCtrl.enable(true);  menuCtrl.enable(true);
   }
 
@@ -34,6 +34,18 @@ export class HomePage {
         console.log(products);
         this.products = products;
         // loading.dismiss()
+      })
+    })
+  }
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    this.mainService.getProducts().then(obs =>{
+      obs
+      .subscribe(products => {
+        console.log(products);
+        this.products = products;
+        refresher.complete();
       })
     })
   }
