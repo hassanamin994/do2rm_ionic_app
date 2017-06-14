@@ -22,17 +22,18 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+    
     console.log('ionViewDidLoad Home');
     let loading = this.loadingCtrl.create({
       content: 'Please wait...',
     });
-    loading.present();
+    // loading.present();
     this.mainService.getProducts().then(obs =>{
       obs
       .subscribe(products => {
         console.log(products);
         this.products = products;
-        loading.dismiss()
+        // loading.dismiss()
       })
     })
   }

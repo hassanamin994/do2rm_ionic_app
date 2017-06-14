@@ -158,7 +158,7 @@ export class ProductNewPage {
     this.barcodeScanner.scan().then((barcodeData) => {
      // Success! Barcode data is here
      if(!barcodeData.cancelled){
-     	this.product.barcode = barcodeData.text;
+     	this.product.qr_code = barcodeData.text;
      }
     }, (err) => {
         // An error occurred

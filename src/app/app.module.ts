@@ -17,6 +17,7 @@ import { PriceModal } from '../pages/product-details/price-modal/price-modal';
 import { UserPage } from '../pages/user/user';
 import { RegistrationPage } from '../pages/registration/registration';
 import { LoginPage } from '../pages/login/login';
+import { LogoutPage } from '../pages/logout/logout';
 import { SearchPage } from '../pages/search/search';
 import { SearchBarPage } from '../pages/search-bar/search-bar';
 import { ListPage } from '../pages/list/list';
@@ -51,7 +52,8 @@ import {MainService} from '../providers/main'
     SearchBarPage,
     ProductNewPage,
     ProductPriceCardPage,
-    ChartPage
+    ChartPage,
+    LogoutPage
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,8 @@ import {MainService} from '../providers/main'
     SearchBarPage,
     ProductNewPage,
     ProductPriceCardPage,
-    ChartPage
+    ChartPage,
+    LogoutPage
 
   ],
   providers: [

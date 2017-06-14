@@ -41,9 +41,16 @@ export class LoginPage {
     .catch((error:any)=>{this.loading.dismiss();console.log(JSON.stringify(error) || error);this.error="*wrong email or password";return  Observable.throw( 'Server error')})
     .subscribe((data)=>{
       console.log(JSON.stringify(data) || data)
-    	this.loading.dismiss()
-    	this.storage.set('token','Bearer '+data['token']);
-    	this.nav.setRoot(HomePage);
+    	this.storage.set('token','Bearer '+data['jwt'])
+      this.MainSrv.getUserInfo()
+        .then(obs => {
+          obs.subscribe(info => {
+            this.loading.dismiss()
+            this.storage.set('user_id',info.id.$oid);
+            this.nav.setRoot(HomePage);
+
+          })
+        })
     })
   }
 
