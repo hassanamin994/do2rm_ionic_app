@@ -11,12 +11,12 @@
 		
 		   	<ion-row>
 
-			   	<ion-item col-4> 
-			   		<img src="{{comment.user_image}}" />
+			   	<ion-item col-3 > 
+			   		<img [src]="comment.user_image || 'https://fakeimg.pl/600x400/?text=No+Image'" />
 		   			
 			   	</ion-item>
 
-			   	<ion-item col-8 >
+			   	<ion-item col-9 >
 			   		<p>by {{ comment.user.username }}</p>
 				   	<br>
 		   			<p> {{comment.body}} </p>
