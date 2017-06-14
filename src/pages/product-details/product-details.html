@@ -8,5 +8,8 @@
 <ion-content >
 	<page-product-card [product]="product"></page-product-card>
 	<page-chart [prices]="product['prices']" ></page-chart>
-	<button ion-button block style="background-color: orange;" (click)="addPrice()">Add Price</button>
+	<ion-fab right bottom>
+		<button ion-fab color="secondary" (click)="addPrice()"><ion-icon name="add"></ion-icon></button>
+	</ion-fab>
+
 </ion-content>
