@@ -10,6 +10,7 @@ import { ProductCard } from '../pages/product-card/product-card';
 import { ProductComments } from '../pages/product-comments/product-comments';
 import { ProductDetails } from '../pages/product-details/product-details';
 import { ProductPrices } from '../pages/product-prices/product-prices';
+import { ModalAutocompleteItems } from '../pages/product-details/price-modal/modal-autocomplete-items/modal-autocomplete-items';
 import { ProductChart } from '../pages/product-chart/product-chart';
 import { ProductNewPage } from '../pages/product-new/product-new';
 import { ProductPriceCardPage } from '../pages/product-price-card/product-price-card';
@@ -53,7 +54,8 @@ import {MainService} from '../providers/main'
     ProductNewPage,
     ProductPriceCardPage,
     ChartPage,
-    LogoutPage
+    LogoutPage,
+    ModalAutocompleteItems
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,8 @@ import {MainService} from '../providers/main'
     ProductNewPage,
     ProductPriceCardPage,
     ChartPage,
-    LogoutPage
+    LogoutPage,
+    ModalAutocompleteItems
 
   ],
   providers: [

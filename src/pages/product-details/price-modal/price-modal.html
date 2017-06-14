@@ -35,7 +35,7 @@
 
 	  <ion-item>
 	    <ion-label fixed>Location</ion-label>
-	    <ion-input type="text" [(ngModel)]="price.location"></ion-input>
+	    <ion-input type="text" (click)="openLocationSelectionModal()" [(ngModel)]="price.location"></ion-input>
 	  </ion-item>
 	  {{ error }}
 	</ion-list>
