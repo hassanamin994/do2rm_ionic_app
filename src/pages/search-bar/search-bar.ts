@@ -111,7 +111,8 @@ export class SearchBarPage {
 	    alert.present();
 	  }
 	  search(){
-	  	if (this.viewCtrl.name == 'HomePage')
+	  	console.log('search input')
+	  	if (this.viewCtrl.name != 'SearchPage')
 	    	this.navCtrl.push(SearchPage, {search: {by: "voice", text: this.searchText }})
 	    else
 	    	this.search_emit.emit({by: "voice", text: this.searchText });

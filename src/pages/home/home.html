@@ -10,14 +10,22 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Bkam</ion-title>
+    <ion-title>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-2 class="title-text">Bkam</ion-col>
+            <ion-col col-10>
+              <page-search-bar></page-search-bar>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-title>
   </ion-navbar>
 </ion-header>
 
 
 
 <ion-content >
-	<page-search-bar></page-search-bar>
 	<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   	</ion-refresher>
