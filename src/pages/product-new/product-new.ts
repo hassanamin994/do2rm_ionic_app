@@ -104,8 +104,8 @@ export class ProductNewPage {
       sourceType: sourceType,
       destinationType: this.camera.DestinationType.DATA_URL,
       mediaType: this.camera.MediaType.PICTURE,
-      targetWidth: 300,
-      targetHeight: 300
+      targetWidth: 150,
+      targetHeight: 150
     }
     
     this.camera.getPicture(options).then((imageData) => {

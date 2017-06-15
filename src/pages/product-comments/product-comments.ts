@@ -44,6 +44,7 @@ export class ProductComments {
       obs.subscribe(comments => {
         console.log(comments);
         this.comments = comments;
+        this.newComment = "";
       })
     })
   }

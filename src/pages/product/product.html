@@ -29,11 +29,19 @@
   	</ion-toolbar>
 </ion-header>
 <ion-content >
+
+  <ion-slides #mySlider (ionSlideDidChange)="onSlideChanged($event, mySlider)">
+    
+    <ion-slide  *ngFor="let slide of slides">
+      <page-product-details *ngIf=" icons=='overview'  " [product]="product"></page-product-details>
  
- <page-product-details *ngIf="icons=='overview'" [product]="product"></page-product-details>
+	 <page-product-prices [prices]="product.prices" *ngIf="icons=='prices' "></page-product-prices>
+	 
+	 <page-product-comments [product_id]="product.id.$oid" [comments]="product.comments" *ngIf="icons=='comments' "></page-product-comments>
+    </ion-slide>
+
+  </ion-slides>
  
- <page-product-prices [prices]="product.prices" *ngIf="icons=='prices'"></page-product-prices>
  
- <page-product-comments [product_id]="product.id.$oid" [comments]="product.comments" *ngIf="icons=='comments'"></page-product-comments>
 
 </ion-content>

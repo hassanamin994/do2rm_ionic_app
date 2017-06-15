@@ -9,10 +9,10 @@
 	<ion-card *ngFor="let comment of comments ">
 	   <ion-row text-wrap >
 		
-		   	<ion-row>
-
+		   <ion-grid>
+		   		<ion-row>
 			   	<ion-item col-3 > 
-			   		<img [src]="comment.user_image || 'https://fakeimg.pl/600x400/?text=No+Image'" />
+			   		<img [src]="comment.user_image || 'https://fakeimg.pl/400x400/?text=No+Image'" />
 		   			
 			   	</ion-item>
 
@@ -23,7 +23,7 @@
 			   	</ion-item>
 			   
 		   	</ion-row>
-
+		   </ion-grid>
 	   </ion-row>
 	</ion-card>
 	<hr>
