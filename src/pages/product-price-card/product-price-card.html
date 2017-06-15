@@ -11,7 +11,7 @@
 		<h1>{{price.price}} EGP </h1>
 		<p>At {{price.location}}</p><br>
 		  <ion-thumbnail >
-	   		<img [src]=" price.image.url? 'https://do2rom.herokuapp.com' + price.image.url : 'https://fakeimg.pl/600x400/?text=No+Image' " />
+	   		<img [src]=" price.image?.url? 'https://do2rom.herokuapp.com' + price.image.url : 'https://fakeimg.pl/600x400/?text=No+Image' " />
 	   		<div class="card-price" *ngIf="home" ><div class="price">{{product.details?.min}}$</div></div>
 	  </ion-thumbnail>
 	 </ion-col>

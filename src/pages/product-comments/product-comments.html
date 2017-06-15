@@ -9,20 +9,21 @@
 	<ion-card *ngFor="let comment of comments ">
 	   <ion-row text-wrap >
 		
-		   	<ion-row>
+		   <ion-grid>
+		   		<ion-row>
+				   	<ion-item col-4> 
+				   		<img src="{{comment.user_image}}" />
+			   			
+				   	</ion-item>
 
-			   	<ion-item col-4> 
-			   		<img src="{{comment.user_image}}" />
-		   			
-			   	</ion-item>
-
-			   	<ion-item col-8 >
-			   		<p>by {{ comment.user.username }}</p>
-				   	<br>
-		   			<p> {{comment.body}} </p>
-			   	</ion-item>
-			   
-		   	</ion-row>
+				   	<ion-item col-8 >
+				   		<p>by {{ comment.user.username }}</p>
+					   	<br>
+			   			<p> {{comment.body}} </p>
+				   	</ion-item>
+				   
+			   	</ion-row>
+		   </ion-grid>
 
 	   </ion-row>
 	</ion-card>

@@ -39,7 +39,7 @@
 			<ion-input type="text" placeholder="Barcode" [(ngModel)]="product.qr_code" ></ion-input>
 		</ion-item>
 		<ion-item col-3>
-			<button  ion-button icon-only  (click)="openBarcodeSearch()" class="blueb barcode" round>
+			<button  ion-button icon-only  (mousedown)="openBarcodeSearch()" class="blueb barcode" round>
 				<ion-icon name="barcode"></ion-icon>
 			</button>
 		</ion-item>

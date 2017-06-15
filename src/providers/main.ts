@@ -15,7 +15,7 @@ export class MainService {
   async setheader(){
 
     let token = await this.storage.get('token')
-    // token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOnsiJG9pZCI6IjU5M2I4NjM1YTA0NDRmMDAwNDI5NTBiMCJ9fQ.ZAJW-BtY8Qm_OeLenGWdQbep78-5OpA6OW6sD3iY2KY';
+    token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOnsiJG9pZCI6IjU5M2I4NjM1YTA0NDRmMDAwNDI5NTBiMCJ9fQ.ZAJW-BtY8Qm_OeLenGWdQbep78-5OpA6OW6sD3iY2KY';
     let headers = new Headers ({ 'Authorization': token });
     headers.append( 'Content-Type', 'application/json' );
     return headers;
