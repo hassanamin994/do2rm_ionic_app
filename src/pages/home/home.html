@@ -29,6 +29,9 @@
 	<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   	</ion-refresher>
+    <ion-fab right bottom>
+      <button ion-fab color="secondary" (click)="addProduct()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
 	<ion-row>
 		<ion-row *ngFor="let product of products">
 			<page-product-card [product]="product" [home]="true" ></page-product-card>

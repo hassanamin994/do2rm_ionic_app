@@ -4,6 +4,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AlertController } from 'ionic-angular';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { MainService } from '../../providers/main'  ;
+import { ProductNewPage } from '../product-new/product-new';
 
 /**
  * Generated class for the Home page.
@@ -48,6 +49,10 @@ export class HomePage {
         refresher.complete();
       })
     })
+  }
+
+  addProduct(){
+    this.navCtrl.push(ProductNewPage);
   }
 
   
