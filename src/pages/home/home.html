@@ -10,17 +10,28 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Bkam</ion-title>
+    <ion-title>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-2 class="title-text">Bkam</ion-col>
+            <ion-col col-10>
+              <page-search-bar></page-search-bar>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-title>
   </ion-navbar>
 </ion-header>
 
 
 
 <ion-content >
-	<page-search-bar></page-search-bar>
 	<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   	</ion-refresher>
+    <ion-fab right bottom>
+      <button ion-fab color="secondary" (click)="addProduct()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
 	<ion-row>
 		<ion-row *ngFor="let product of products">
 			<page-product-card [product]="product" [home]="true" ></page-product-card>

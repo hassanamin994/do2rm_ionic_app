@@ -40,6 +40,8 @@ export class SearchPage {
     this.mainService.searchByWord(text).then( obs =>{
       obs.subscribe(products => {
           console.log(products);
+          if(products.constructor != Array)
+             products = [products]
           this.products = products;
         })
        }
