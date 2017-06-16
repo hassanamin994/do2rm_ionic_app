@@ -49,8 +49,11 @@ export class UserPage {
             case (user.points > 400 && user.points <= 500):
                 this.badge = '005.png'
                 break;
-            case (user.points > 500 ):
+            case (user.points > 500 && user.points <= 600):
                 this.badge = '006.png'
+                break;
+            case (user.points > 600 ):
+                this.badge = '007.png'
                 break;
             default:
                 break;
