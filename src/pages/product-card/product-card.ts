@@ -17,6 +17,7 @@ import { AlertController } from 'ionic-angular';
 export class ProductCard {
   @Input() product: any;
   @Input() home: any;
+  @Input() details: any;
   user_id = "";
   constructor(private alertCtrl: AlertController , private mainService: MainService, public navCtrl: NavController, public navParams: NavParams) {
     mainService.getUserid().then(id => {

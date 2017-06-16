@@ -50,6 +50,13 @@ export class MainService {
     let data = {product: product};
     return this.http.post(this.domain+"/api/products",data,{headers:headers}).map(res=>res.json());
   }
+
+  // update product
+  async updateProduct(product,id){
+    let headers=await this.setheader();
+    let data = {product: product};
+    return this.http.put(this.domain+"/api/products/"+id,data,{headers:headers}).map(res=>res.json());
+  }
   
   // add a price to a product 
   async addPrice(product_id, price){

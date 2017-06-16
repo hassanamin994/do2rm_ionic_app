@@ -6,7 +6,7 @@
 -->
 
 <ion-content >
-	<page-product-card [product]="product"></page-product-card>
+	<page-product-card [product]="product" [details]="true"></page-product-card>
 	<page-chart [prices]="product['prices']" ></page-chart>
 	<ion-fab right bottom>
 		<button ion-fab color="secondary" (click)="addPrice()"><ion-icon name="add"></ion-icon></button>

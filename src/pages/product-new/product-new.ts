@@ -104,8 +104,8 @@ export class ProductNewPage {
       sourceType: sourceType,
       destinationType: this.camera.DestinationType.DATA_URL,
       mediaType: this.camera.MediaType.PICTURE,
-      targetWidth: 150,
-      targetHeight: 150
+      targetWidth: 500,
+      targetHeight: 500
     }
     
     this.camera.getPicture(options).then((imageData) => {
@@ -121,19 +121,39 @@ export class ProductNewPage {
   }
 
   addProduct(){
-  	console.log(this.product.name);
   	// add product to api and get its id 
 
     if(this.product.name.trim()){
-      if(this.productsFull.hasOwnProperty(this.product.name)){
-        let modal = this.modalCtrl.create(PriceModal, {product_id: this.productsFull[this.product.name]});
-            modal.present();
-      }
-      else{
-        let loading = this.loadingCtrl.create({
+      let loading = this.loadingCtrl.create({
           content: 'Please wait...'
         });
         loading.present();
+      if(this.productsFull.hasOwnProperty(this.product.name)){
+        if(this.product.image || this.product.qr_code){
+          this.mainSrv.updateProduct(this.product,this.productsFull[this.product.name])
+          .then((obs)=>{
+            obs
+            .catch((error:any)=>{
+                console.log( error);
+                this.error= error._body;
+                return  Observable.throw( 'Duplicte product name error')}
+
+              )
+            .subscribe((data) => {
+              loading.dismiss();
+              let modal = this.modalCtrl.create(PriceModal, {product_id: data.id.$oid});
+              modal.present();
+              console.log(data);
+            })
+          })
+        }
+        else{
+          let modal = this.modalCtrl.create(PriceModal, {product_id: this.productsFull[this.product.name]});
+              modal.present();
+        }
+      }
+      else{
+        
         this.mainSrv.addProduct(this.product)
         .then((obs)=>{
           obs

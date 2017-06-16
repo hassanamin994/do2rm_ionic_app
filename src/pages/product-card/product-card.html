@@ -4,11 +4,19 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-card *ngIf=" product.details || product.prices " margin>
+<ion-card *ngIf=" product.details || product.prices " margin >
 
   <ion-thumbnail (click)="openProductPage()" >
-   		<img  [src]=" product.image.url? 'https://do2rom.herokuapp.com' + product.image.url : 'https://fakeimg.pl/600x400/?text='+product.name "  />
+   		<img *ngIf="!product.images[0]"  [src]=" 'https://fakeimg.pl/600x400/?text='+product.name "  />
+      
    		<div class="card-price" *ngIf="home" ><div class="price">{{product.details?.min}}$</div></div>
+      <div>
+      <ion-slides *ngIf="product.images[0]"> 
+        <ion-slide *ngFor="let image of product.images">
+          <img  [src]=" 'https://do2rom.herokuapp.com/uploads/' + image.image_filename "  />
+        </ion-slide>
+      </ion-slides>
+      </div>
   </ion-thumbnail>
 
   <ion-card-content >
