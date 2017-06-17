@@ -15,7 +15,7 @@ export class MainService {
   async setheader(){
 
     let token = await this.storage.get('token')
-    token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOnsiJG9pZCI6IjU5M2I4NjM1YTA0NDRmMDAwNDI5NTBiMCJ9fQ.ZAJW-BtY8Qm_OeLenGWdQbep78-5OpA6OW6sD3iY2KY';
+    // token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOnsiJG9pZCI6IjU5M2I4NjM1YTA0NDRmMDAwNDI5NTBiMCJ9fQ.ZAJW-BtY8Qm_OeLenGWdQbep78-5OpA6OW6sD3iY2KY';
     let headers = new Headers ({ 'Authorization': token });
     headers.append( 'Content-Type', 'application/json' );
     return headers;
@@ -39,6 +39,12 @@ export class MainService {
     let headers=new Headers ({ 'Content-Type': 'application/json' });
     return this.http.post(this.domain+"/api/users",data,{headers:headers}).map(res=>res.json());
 
+  }
+  // update user
+  async updateUser(user){
+    let headers=await this.setheader();
+    let data = {user: user};
+    return this.http.put(this.domain+"/api/users/"+user.id,data,{headers:headers}).map(res=>res.json());
   }
   async logout(){
     await this.storage.remove('token')
