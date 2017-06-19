@@ -44,7 +44,7 @@ export class PriceModal {
     console.log(navParams.get('product_id'))
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
       this.loadMap();
      this.initPlacedetails();
     console.log('ionViewDidLoad price modal')
@@ -76,7 +76,8 @@ export class PriceModal {
       this.addMarkerListener()
     },(err)=>{
       console.log(err);
-    })
+      this.showAlert('Error', 'An error has occured while trying to get your location, Please make sure you have internet connection and enabled GPS');
+    }, {timeout:7000})
 
 
   }
