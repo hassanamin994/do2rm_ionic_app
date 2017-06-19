@@ -4,6 +4,8 @@ import { ProductPage } from '../product/product';
 import { MainService } from '../../providers/main';
 import { Observable } from 'rxjs/Rx';
 import { AlertController } from 'ionic-angular';
+import { UserPage } from '../user/user';
+
 /**
  * Generated class for the ProductCard page.
  *
@@ -107,6 +109,9 @@ export class ProductCard {
     // get logged in user id and compare if his ids are in the confirmed array 
       
     return this.product.details? this.product.details.min_disconfirmations.map(obj => obj.$oid).indexOf(this.user_id) != -1 : false ;
+  }
+  gotouser(id){
+    this.navCtrl.push(UserPage,{id:id})
   }
 
   showAlert(heading, body){

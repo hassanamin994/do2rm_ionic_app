@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import { MainService } from '../../providers/main';
+import {Observable} from 'rxjs/Rx';
 
 /**
  * Generated class for the UserEditPage page.
@@ -15,10 +16,8 @@ import { MainService } from '../../providers/main';
   templateUrl: 'user-edit.html',
 })
 export class UserEditPage {
-	user: any = { username: "", 
-				password: "",
-				password_confirmation: "",
-				image: "",
+  id: any
+	user: any = { 
 		};
 	errors: Array<any> = [] 
   constructor(private camera: Camera, 
@@ -38,7 +37,7 @@ ionViewDidLoad() {
         this.user = user;
         this.user.username = user.username;
         this.user.image = user.avatar.url;
-        this.user.id = user.id.$oid
+        this.id = user.id.$oid
 
       })
     })
@@ -46,8 +45,8 @@ ionViewDidLoad() {
    updateUser() {
    	this.errors = [];
  	// verify errors and send request
-   	if(!this.user.username)
-   		this.errors.push("Username cannot be empty!")
+   //	if(!this.user.username)
+   	//	this.errors.push("Username cannot be empty!")
    	if(this.user.password){
    		if(this.user.password != this.user.password_confirmation)
    			this.errors.push('Password confirmation doesn\'t match ')
@@ -56,17 +55,25 @@ ionViewDidLoad() {
    		if(this.user.image){
    			// if user added new image, include it to be updated
    			this.user.avatar = this.user.image;
-	   		this.doUpdateRequest();
+	   		
    		}
+      this.doUpdateRequest();
    	}
+    console.log(this.errors)
+
 
    }
 
    doUpdateRequest(){
-   	this.mainService.updateUser(this.user)
+   	this.mainService.updateUser(this.user,this.id)
    	.then(obs => {
-   		obs.subscribe(res => {
+   		obs
+      .catch((error:any)=>{console.log(JSON.stringify(error) || error);return  Observable.throw( 'Server error')})
+      .subscribe(res => {
    			console.log(res);
+        alert('profile updated sucessfuly');
+        this.navCtrl.pop()
+
    		})
    	})
    }

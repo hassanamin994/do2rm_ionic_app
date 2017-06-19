@@ -41,10 +41,10 @@ export class MainService {
 
   }
   // update user
-  async updateUser(user){
+  async updateUser(user, id){
     let headers=await this.setheader();
     let data = {user: user};
-    return this.http.put(this.domain+"/api/users/"+user.id,data,{headers:headers}).map(res=>res.json());
+    return this.http.put(this.domain+"/api/users/"+id,data,{headers:headers}).map(res=>res.json());
   }
   async logout(){
     await this.storage.remove('token')
@@ -138,6 +138,10 @@ export class MainService {
   async getUserInfo(){
     let headers=await this.setheader();
     return this.http.get(this.domain + "/api/my_info/" , {headers:headers}).map(res=>res.json());
+  }
+  async getUser(id){
+    let headers=await this.setheader();
+    return this.http.get(this.domain + "/api/users/"+id , {headers:headers}).map(res=>res.json());
   }
 
 
