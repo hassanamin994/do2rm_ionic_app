@@ -15,7 +15,6 @@ import { SearchPage } from '../search/search';
   templateUrl: 'search-bar.html',
 })
 export class SearchBarPage {
-	public toggled: boolean;
 	speechRecognitionSubscribtion: any ;
 	@Input() searchText: string = "" ;
 	@Output() search_emit: EventEmitter<any> = new EventEmitter<any>();
@@ -118,10 +117,6 @@ export class SearchBarPage {
 	    else
 	    	this.search_emit.emit({by: "voice", text: this.searchText });
 	  }
-
-	  toggleSearch() {
-       this.toggled = this.toggled ? false : true;
-    	}
 
 
 }

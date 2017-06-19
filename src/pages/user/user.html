@@ -27,7 +27,7 @@
 
 		<ion-row>
 			<ion-item col-12 >
-				<img [src]=" user.avatar?.url? user.avatar?.url : 'https://dummyimage.com/600x400/000/fff/User' ">
+				<img [src]=" user.avatar?.url? 'https://do2rom.herokuapp.com'+user.avatar.url : 'https://dummyimage.com/600x400/000/fff/User' ">
 			</ion-item>
 		</ion-row>
 
@@ -46,7 +46,7 @@
 			</ion-item>
 		</ion-row>
 
-		<ion-row>
+		<ion-row *ngIf="!id">
 			<button ion-button full (click)="editProfile()">Edit Profile</button>
 		</ion-row>
 	</ion-grid>

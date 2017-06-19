@@ -1,15 +1,11 @@
+<ion-row class='search'>
+	<ion-grid>
 
-
-	
-      <button ion-button *ngIf="!toggled" (click)="toggleSearch()" icon-only clear >
-        <ion-icon   name="search"></ion-icon>
-      </button>
-      <button *ngIf="toggled"> 
-	<ion-icon name="barcode" (click)="openBarcodeSearch()"></ion-icon>
-    <ion-input id="search" type="text" round [(ngModel)]="searchText" (ionInput)="search($event)" placeholder="Search" > </ion-input>
-</button>
-
-			<!--ion-item col-2 class='icon_item'>
+		<ion-row>
+			<ion-item col-8> 
+			    <ion-searchbar id="search" type="text" round [(ngModel)]="searchText" (ionInput)="search($event)" placeholder="Search" ></ion-searchbar>
+			</ion-item>
+			<ion-item col-2 class='icon_item'>
 				<button  ion-button icon-only class="camera" (click)="openBarcodeSearch()" round>
 					<ion-icon name="barcode"></ion-icon>
 				</button>
@@ -19,6 +15,9 @@
 				<button  ion-button icon-only class="camera" (mousedown)="startRecording()" (mouseup)="stopRecording()" round>
 					<ion-icon name="mic"></ion-icon>
 				</button>
-			</ion-item-->
+			</ion-item>
 
-		
+		</ion-row>
+
+	</ion-grid>
+</ion-row>

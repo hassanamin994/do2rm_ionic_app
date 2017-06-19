@@ -23,7 +23,7 @@
   	<ion-row>
   	<div col-7 class="title">
   		<h1>{{product.name}}</h1>
-      <h2>by: {{ product.details?.min_username }}</h2>
+      <h2 (click)="gotouser(product.details.min_userid['$oid'])">by: {{ product.details?.min_username }}</h2>
       <h3>{{product.details?.min_location}}</h3>
   	</div>
   	<div col-5>

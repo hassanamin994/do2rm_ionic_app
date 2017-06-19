@@ -15,6 +15,7 @@ import { UserEditPage } from '../user-edit/user-edit';
   templateUrl: 'user.html',
 })
 export class UserPage {
+  id = null
   user: any = {
   	id: 1,
   	username: '',
@@ -25,44 +26,53 @@ export class UserPage {
   badge: string
 
   constructor(private mainService: MainService, public navCtrl: NavController, public navParams: NavParams) {
-
+      if(navParams.get('id'))
+        this.id=navParams.get('id');
   }
   editProfile() {
     this.navCtrl.push(UserEditPage)
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserPage');
-    this.mainService.getUserInfo().then(obs => {
-      obs.subscribe(user => {
-        console.log('user data ', user)
-        this.user = user; 
-        switch (true) {
-            case (user.points > 50 && user.points <= 100):
-                this.badge='001.png'
-                break;
-            case (user.points > 100 && user.points <= 200):
-                this.badge = '002.png'
-                break;
-            case (user.points > 200 && user.points <= 300):
-                this.badge = '003.png'
-                break;
-            case (user.points > 300 && user.points <= 400):
-                this.badge = '004.png'
-                break;
-            case (user.points > 400 && user.points <= 500):
-                this.badge = '005.png'
-                break;
-            case (user.points > 500 && user.points <= 600):
-                this.badge = '006.png'
-                break;
-            case (user.points > 600 ):
-                this.badge = '007.png'
-                break;
-            default:
-                break;
-        }
+    if(this.id){
+       this.mainService.getUser(this.id).then(obs => {
+            obs.subscribe(user => this.loaduser(user))
+        })
+    }
+    else{
+      this.mainService.getUserInfo().then(obs => {
+            obs.subscribe(user => this.loaduser(user))
       })
-    })
+    }
+  }
+  loaduser(user){
+    console.log('user data ', user)
+              this.user = user; 
+              switch (true) {
+                  case (user.points > 50 && user.points <= 100):
+                      this.badge='001.png'
+                      break;
+                  case (user.points > 100 && user.points <= 200):
+                      this.badge = '002.png'
+                      break;
+                  case (user.points > 200 && user.points <= 300):
+                      this.badge = '003.png'
+                      break;
+                  case (user.points > 300 && user.points <= 400):
+                      this.badge = '004.png'
+                      break;
+                  case (user.points > 400 && user.points <= 500):
+                      this.badge = '005.png'
+                      break;
+                  case (user.points > 500 && user.points <= 600):
+                      this.badge = '006.png'
+                      break;
+                  case (user.points > 600 ):
+                      this.badge = '007.png'
+                      break;
+                  default:
+                      break;
+              }
   }
 
 
