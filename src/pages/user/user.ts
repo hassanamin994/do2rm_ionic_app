@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MainService } from '../../providers/main';
+import { UserEditPage } from '../user-edit/user-edit';
 
 /**
  * Generated class for the UserPage page.
@@ -16,9 +17,9 @@ import { MainService } from '../../providers/main';
 export class UserPage {
   user: any = {
   	id: 1,
-  	username: 'Hassan Amin',
+  	username: '',
   	imageUrl: 'https://dummyimage.com/600x400/000/fff',
-    points: 100,
+    points: 0,
     badges:[{name: 'badge 1', imageUrl: 'https://dummyimage.com/600x400/000/fff'},{name: 'badge 1', imageUrl: 'https://dummyimage.com/600x400/000/fff'}]
   }
   badge: string
@@ -26,7 +27,9 @@ export class UserPage {
   constructor(private mainService: MainService, public navCtrl: NavController, public navParams: NavParams) {
 
   }
-
+  editProfile() {
+    this.navCtrl.push(UserEditPage)
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserPage');
     this.mainService.getUserInfo().then(obs => {

@@ -16,6 +16,7 @@ import { ProductNewPage } from '../pages/product-new/product-new';
 import { ProductPriceCardPage } from '../pages/product-price-card/product-price-card';
 import { PriceModal } from '../pages/product-details/price-modal/price-modal';
 import { UserPage } from '../pages/user/user';
+import { UserEditPage } from '../pages/user-edit/user-edit';
 import { RegistrationPage } from '../pages/registration/registration';
 import { LoginPage } from '../pages/login/login';
 import { LogoutPage } from '../pages/logout/logout';
@@ -47,6 +48,7 @@ import {MainService} from '../providers/main'
     PriceModal,
     ProductChart,
     UserPage,
+    UserEditPage,
     RegistrationPage,
     LoginPage,
     SearchPage,
@@ -76,6 +78,7 @@ import {MainService} from '../providers/main'
     PriceModal,
     ProductChart,
     UserPage,
+    UserEditPage,
     RegistrationPage,
     LoginPage,
     SearchPage,
