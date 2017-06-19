@@ -18,7 +18,10 @@ import { ProductNewPage } from '../product-new/product-new';
 })
 export class HomePage {
   products: Array<any> = [];
-  constructor(private mainService: MainService, private speechRecognition: SpeechRecognition, private Ctrl: AlertController, public barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams, public menuCtrl:MenuController, public loadingCtrl: LoadingController) {
+  start: number = 0;
+  end: number = 5; 
+  offset = 5;
+  constructor(private alertCtrl: AlertController, private mainService: MainService, private speechRecognition: SpeechRecognition, private Ctrl: AlertController, public barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams, public menuCtrl:MenuController, public loadingCtrl: LoadingController) {
     menuCtrl.enable(true);  menuCtrl.enable(true);
   }
 
@@ -29,24 +32,37 @@ export class HomePage {
       content: 'Please wait...',
     });
     // loading.present();
-    this.mainService.getProducts().then(obs =>{
+    this.mainService.getProducts(this.start, this.end).then(obs =>{
       obs
       .subscribe(products => {
-        console.log(products);
+        this.start = this.end +1;
+        this.end = this.end + this.offset;
+        console.log('products on init ',products);
         this.products = products;
         // loading.dismiss()
       })
     })
   }
+
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
+    this.start = 0;
+    this.end = 5;
+    this.products = [];
+    this.loadMoreProducts(refresher);
+  }
 
-    this.mainService.getProducts().then(obs =>{
+  loadMoreProducts(refresher){
+    console.log('loading more products');
+    this.mainService.getProducts(this.start,this.end).then(obs =>{
       obs
       .subscribe(products => {
+        this.start = this.end +1;
+        this.end = this.end + this.offset;
         console.log(products);
-        this.products = products;
-        refresher.complete();
+        this.insertProductsToArray(products);
+        if(refresher)
+          refresher.complete();
       })
     })
   }
@@ -55,7 +71,34 @@ export class HomePage {
     this.navCtrl.push(ProductNewPage);
   }
 
-  
-  
+  insertProductsToArray(products) {
+    // if it's an array, insert all elements 
+    if(products.constructor == Array){
+      products.forEach(product => {
+        this.products.push(product);
+      })
+    } else {
+    // if single element, just push 
+      console.log('pushing single', products)
+      if(products.status && products.status == 'no Results found') {
+        console.log('no more products to load ');
+        // show alert that no more products to load 
+        this.showAlert('End of products', 'No more products are available');
+      } else {
+        this.products.push(products);
+      }
+    }
+
+  }
+
+   showAlert(heading, body){
+      let alert = this.alertCtrl.create({
+        title: heading,
+        subTitle: body,
+        buttons: ['Ok']
+        });
+      alert.present();
+    }
+    
 
 }

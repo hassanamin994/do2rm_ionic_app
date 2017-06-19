@@ -73,9 +73,10 @@ export class MainService {
   }
   
   // gets products
-  async getProducts(){
+  async getProducts(start, end){
     let headers=await this.setheader();
-    return this.http.get(this.domain + "/api/products/",{headers:headers}).map(res=>res.json());
+    return this.http.get(this.domain + "/api/products/pagination/" + start + "/" + end ,
+      {headers:headers}).map(res=>res.json());
   }
   
   // gets a product 
