@@ -15,7 +15,6 @@ import { AuthenticationService } from '../authentication.service';
 import {Storage} from '@ionic/storage';
 
 
-
 @Component({
   templateUrl: 'app.html'
 })

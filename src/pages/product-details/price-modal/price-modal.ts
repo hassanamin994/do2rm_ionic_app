@@ -128,7 +128,7 @@ export class PriceModal {
         .subscribe((data) => {
           console.log('success', data);
           this.loading.dismiss();
-          this.showAlert('Price Added','Price added successfully!');
+          
           //this.viewCtrl.dismiss();
           this.navCtrl.setRoot(ProductPage, {product_id: this.navParams.get('product_id')});
         })
